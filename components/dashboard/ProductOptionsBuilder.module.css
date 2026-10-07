@@ -1,0 +1,196 @@
+.builder {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionHeader h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.sectionHeader p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.groupCard,
+.addonCard,
+.emptyState {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.emptyState {
+  color: #64748b;
+  font-size: 0.86rem;
+}
+
+.groupHeader,
+.addonGrid,
+.valueGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.groupHeader {
+  grid-template-columns: minmax(160px, 1fr) 150px auto auto;
+  align-items: end;
+}
+
+.valueGrid {
+  grid-template-columns: minmax(150px, 1.4fr) repeat(3, minmax(92px, 0.8fr)) 72px auto;
+  align-items: end;
+}
+
+.addonGrid {
+  grid-template-columns: minmax(160px, 1.3fr) minmax(110px, 0.8fr) minmax(100px, 0.7fr) auto auto;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label,
+.inlineCheck {
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.input,
+.select {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #0f172a;
+  font: inherit;
+  font-size: 0.86rem;
+  outline: none;
+  padding: 10px 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.colorField {
+  padding: 4px;
+  height: 42px;
+}
+
+.inlineCheck {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  min-height: 42px;
+}
+
+.inlineCheck input {
+  height: 16px;
+  width: 16px;
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton,
+.iconButton {
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 8px;
+  justify-content: center;
+  min-height: 40px;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton {
+  border: 1px solid #dbeafe;
+  padding: 9px 12px;
+}
+
+.primaryButton {
+  background: #14532d;
+  border-color: #14532d;
+  color: #ffffff;
+}
+
+.secondaryButton {
+  background: #f8fafc;
+  color: #14532d;
+}
+
+.dangerButton,
+.iconButton {
+  background: #fff7f7;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.iconButton {
+  border: 1px solid #fecaca;
+  height: 42px;
+  padding: 0;
+  width: 42px;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover,
+.dangerButton:hover,
+.iconButton:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .groupHeader,
+  .valueGrid,
+  .addonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .iconButton {
+    width: 100%;
+  }
+}

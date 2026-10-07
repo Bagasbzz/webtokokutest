@@ -1,0 +1,901 @@
+/* =====================================================
+   ADMIN SHELL
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f0f4f8;
+  color: #0f172a;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background: #0d1117;
+  color: #fff;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+}
+
+.brandMark {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #10b981;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.brandMark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 8px;
+  flex: 1;
+  gap: 2px;
+}
+
+.navSection {
+  padding: 8px 10px 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.25);
+  margin-top: 4px;
+}
+
+.navLink,
+.backLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  border-radius: 9px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.navLink:hover,
+.backLink:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backWrap {
+  padding: 10px 8px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* =====================================================
+   MAIN CONTENT
+   ===================================================== */
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 32px;
+  overflow-x: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1400px;
+}
+
+/* =====================================================
+   PAGE HEADER
+   ===================================================== */
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pageTitle {
+  margin: 0 0 6px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.pageSubtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   METRICS GRID
+   ===================================================== */
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metricCard {
+  background: #fff;
+  border: 1px solid #e8edf2;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.04), 0 4px 16px rgba(15,23,42,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metricCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(15,23,42,0.08);
+}
+
+.metricIcon {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.metricBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.metricLabel {
+  margin: 0 0 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+}
+
+.metricValue {
+  margin: 0 0 2px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.metricSub {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* =====================================================
+   STAT CARDS (legacy, kept for compatibility)
+   ===================================================== */
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  gap: 18px;
+}
+
+.card,
+.statCard,
+.tableCard {
+  background: #fff;
+  border: 1px solid #e8edf2;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.04), 0 4px 16px rgba(15,23,42,0.04);
+}
+
+.statCard {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 18px;
+}
+
+.statIcon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.statLabel {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 900;
+}
+
+/* =====================================================
+   CARD
+   ===================================================== */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+}
+
+.cardBody {
+  padding: 16px 20px;
+}
+
+/* =====================================================
+   LIST & ITEMS
+   ===================================================== */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  background: #fafbfd;
+  transition: border-color 0.15s;
+}
+
+.listItem:hover {
+  border-color: #e2e8f0;
+}
+
+.listItem strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.listItem span {
+  display: block;
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.logAction {
+  font-size: 0.8rem !important;
+  font-family: monospace;
+  color: #0891b2 !important;
+  background: #f0f9ff;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+/* =====================================================
+   BADGES
+   ===================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.badgeOn {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badgeOff {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.badgeStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* =====================================================
+   TABLE
+   ===================================================== */
+
+.tableCard {
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: #fafbfd;
+}
+
+.table td {
+  color: #0f172a;
+  font-size: 0.875rem;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover td {
+  background: #fafbfd;
+}
+
+.muted {
+  color: #64748b;
+}
+
+.tableHint {
+  display: block;
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 0.73rem;
+}
+
+.inlineLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #059669;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.inlineLink:hover {
+  color: #047857;
+  text-decoration: underline;
+}
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+.actionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.actionButton:hover {
+  border-color: #10b981;
+  background: #f0fdf4;
+  color: #047857;
+}
+
+.dangerButton:hover {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* =====================================================
+   FEATURE FLAGS
+   ===================================================== */
+
+.flagRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+}
+
+.flagRow:last-child {
+  border-bottom: none;
+}
+
+.flagRow:hover {
+  background: #fafbfd;
+}
+
+.flagInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.flagIcon {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.flagIconOn {
+  background: #dcfce7;
+  color: #059669;
+}
+
+.flagName {
+  margin: 0 0 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.flagDesc {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+.code {
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-family: monospace;
+}
+
+/* =====================================================
+   TOGGLE SWITCH
+   ===================================================== */
+
+.toggle {
+  position: relative;
+  width: 46px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggleOn {
+  background: #10b981;
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(15,23,42,0.2);
+  transition: transform 0.2s ease;
+}
+
+.toggleKnobOn {
+  transform: translateX(20px);
+}
+
+/* =====================================================
+   SHORTCUT GRID
+   ===================================================== */
+
+.shortcutGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+.shortcut {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 120px;
+  padding: 16px;
+  border: 1px solid #e8edf2;
+  border-radius: 14px;
+  background: #fafbfd;
+  text-decoration: none;
+  color: #0f172a;
+  transition: transform 0.2s ease, border-color 0.15s, box-shadow 0.2s;
+}
+
+.shortcut:hover {
+  transform: translateY(-2px);
+  border-color: #10b981;
+  box-shadow: 0 4px 16px rgba(16,185,129,0.1);
+}
+
+.shortcutIcon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.shortcut strong {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.shortcut span:last-child {
+  color: #64748b;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* =====================================================
+   FORM PREMIUM
+   ===================================================== */
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.02em;
+}
+
+.inputField,
+.selectField,
+.textareaField {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 0.9rem;
+  font-family: 'Inter', inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+}
+
+.inputField:focus,
+.selectField:focus,
+.textareaField:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16,185,129,0.1);
+}
+
+.inputField::placeholder,
+.textareaField::placeholder {
+  color: #cbd5e1;
+}
+
+/* =====================================================
+   TEMPLATE CARD GRID (Quick Setup)
+   ===================================================== */
+
+.templateSelectorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.templateCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #ffffff;
+  border: 2px solid #e8edf2;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.templateCard:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+}
+
+.templateCardActive {
+  border-color: var(--accent-color, #10b981) !important;
+  background: var(--bg-hover-color, #f0fdf4) !important;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.07);
+}
+
+.templateCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.templateCardDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-color, #10b981);
+}
+
+.templateCardName {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.templateCardDesc {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* =====================================================
+   SUBMIT BUTTON PREMIUM
+   ===================================================== */
+
+.submitBtnPremium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  font-family: inherit;
+  color: #ffffff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(16,185,129,0.3);
+  white-space: nowrap;
+}
+
+.submitBtnPremium:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+}
+
+.submitBtnPremium:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.submitBtnPremium:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1200px) {
+  .metricsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .shell {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    position: relative;
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 8px;
+    gap: 4px;
+  }
+
+  .navSection {
+    display: none;
+  }
+
+  .backWrap {
+    display: none;
+  }
+
+  .navLink {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .grid4,
+  .grid2,
+  .shortcutGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flagRow,
+  .listItem {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tableCard {
+    overflow-x: auto;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}

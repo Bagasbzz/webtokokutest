@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Webtokoku - Simulasi Toko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --brand: #16a34a;
+      --brand-dark: #15803d;
+      --brand-soft: #ecfdf5;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --paper: #ffffff;
+      --soft: #f8fafc;
+      --warn: #b45309;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fafc 0%, #fff 72%);
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: Outfit, Inter, sans-serif; letter-spacing: 0; line-height: 1.08; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+
+    .shell { max-width: 1200px; margin: 0 auto; padding: 28px 22px 64px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0 34px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: Outfit, Inter, sans-serif; font-weight: 900; font-size: 1.3rem; }
+    .brand-mark { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; overflow: hidden; }
+    .brand-mark img { width: 34px; height: 34px; display: block; }
+    .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: white; color: var(--ink); font-weight: 800; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(15, 23, 42, 0.09); }
+    .btn.primary { background: var(--brand); color: white; border-color: var(--brand); }
+    .btn.dark { background: var(--ink); color: white; border-color: var(--ink); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .95fr); gap: 34px; align-items: center; padding: 36px 0 44px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px; background: white; color: var(--muted); font-size: .82rem; font-weight: 800; margin-bottom: 18px; }
+    .dot { width: 8px; height: 8px; border-radius: 99px; background: var(--brand); }
+    .hero h1 { margin: 0 0 18px; font-size: clamp(2.6rem, 5.8vw, 5rem); font-weight: 900; }
+    .hero p { max-width: 620px; margin: 0 0 24px; color: var(--muted); font-size: 1.05rem; }
+    .hero-card { padding: 18px; border: 1px solid var(--line); border-radius: 28px; background: white; box-shadow: 0 30px 70px rgba(15, 23, 42, .12); }
+    .mini-window { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+    .window-bar { display: flex; align-items: center; gap: 8px; padding: 12px; border-bottom: 1px solid var(--line); background: #f8fafc; }
+    .circle { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
+    .url { margin-left: 8px; color: var(--muted); font-size: .78rem; font-weight: 700; }
+    .mini-store { min-height: 420px; background: #fff8ec; color: #7c2d12; padding: 22px; display: grid; align-content: center; text-align: center; }
+    .mini-store h2 { margin: 0 0 12px; font-size: clamp(2rem, 4vw, 3.2rem); color: #9a3412; }
+    .mini-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    .mini-products div { padding: 14px; border: 1px solid #fed7aa; border-radius: 14px; background: #fff; font-weight: 800; }
+
+    .steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 28px 0 34px; }
+    .step-btn { min-height: 70px; padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: white; color: var(--muted); font-weight: 800; cursor: pointer; text-align: left; }
+    .step-btn.active { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-dark); box-shadow: 0 10px 24px rgba(22, 163, 74, .12); }
+    .section { display: none; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: white; box-shadow: 0 18px 44px rgba(15, 23, 42, .06); }
+    .section.active { display: block; }
+    .section-head { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 24px; }
+    .section h2 { margin: 0 0 8px; font-size: clamp(1.7rem, 3vw, 2.4rem); }
+    .section p { margin: 0; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card { padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--soft); }
+    .card i { color: var(--brand); font-size: 20px; margin-bottom: 12px; }
+    .card strong { display: block; margin-bottom: 6px; }
+    .card span { color: var(--muted); font-size: .9rem; }
+
+    .sim-editor { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; min-height: 620px; }
+    .sim-preview-shell { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #eef2f7; }
+    .sim-preview-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: #fff; border-bottom: 1px solid var(--line); }
+    .sim-preview-toolbar strong { font-size: .9rem; }
+    .sim-preview-toolbar span { color: var(--muted); font-size: .78rem; }
+    .frame-wrap { height: 560px; overflow: auto; background: #e5e7eb; padding: 12px; }
+    .frame-wrap iframe { width: 1200px; height: 1400px; border: 0; background: white; transform: scale(.72); transform-origin: top left; box-shadow: 0 18px 42px rgba(15, 23, 42, .18); }
+    .sim-panel { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: #fff; align-self: start; position: sticky; top: 16px; }
+    .sim-panel h3 { margin: 0 0 6px; }
+    .panel-note { margin: 0 0 18px; color: var(--muted); font-size: .86rem; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+    .field label { font-size: .78rem; font-weight: 900; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; }
+    .hint { color: var(--muted); font-size: .76rem; }
+    .allowed-box { margin: 16px 0; padding: 14px; border-radius: 14px; background: var(--brand-soft); color: #065f46; font-size: .84rem; font-weight: 700; }
+    .toast { display: none; margin-top: 12px; padding: 11px 12px; border-radius: 12px; background: #fff7ed; color: var(--warn); font-size: .84rem; font-weight: 800; }
+    .toast.show { display: block; }
+
+    .dashboard-demo { display: grid; grid-template-columns: 220px minmax(0, 1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: #fff; }
+    .dash-side { padding: 22px; background: #f8fafc; border-right: 1px solid var(--line); }
+    .dash-side strong { display: block; margin-bottom: 24px; font-family: Outfit, Inter, sans-serif; font-size: 1.2rem; }
+    .dash-link { display: flex; align-items: center; gap: 10px; padding: 10px 0; color: #475569; font-weight: 700; font-size: .92rem; }
+    .dash-main { padding: 22px; }
+    .dash-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .dash-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .stat { padding: 16px; border-radius: 16px; background: var(--soft); border: 1px solid var(--line); }
+    .stat b { display: block; font-size: 1.7rem; margin-bottom: 4px; }
+    .dash-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 14px; }
+    .table-card, .todo-card { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    .table-card h3, .todo-card h3 { margin: 0; padding: 16px; border-bottom: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    td { padding: 13px 16px; border-bottom: 1px solid var(--line); }
+    .tag { display: inline-flex; padding: 4px 9px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-dark); font-size: .75rem; font-weight: 800; }
+    .todo { padding: 14px 16px; border-bottom: 1px solid var(--line); color: #475569; }
+    .footer-note { margin-top: 28px; padding: 14px 16px; border-radius: 14px; background: var(--brand-soft); color: #065f46; font-size: .9rem; font-weight: 700; }
+
+    body.sim-editing [data-demo-target] { outline: 2px solid var(--brand); outline-offset: 4px; }
+
+    @media (max-width: 980px) {
+      .hero, .sim-editor, .dashboard-demo, .dash-grid { grid-template-columns: 1fr; }
+      .steps, .grid, .dash-stats { grid-template-columns: 1fr 1fr; }
+      .dash-side { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 640px) {
+      .shell { padding: 18px 14px 42px; }
+      .topbar, .section-head, .dash-head { align-items: flex-start; flex-direction: column; }
+      .steps, .grid, .dash-stats, .mini-products { grid-template-columns: 1fr; }
+      .section { padding: 20px; }
+      .frame-wrap iframe { width: 1000px; transform: scale(.42); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a href="/" class="brand">
+        <span class="brand-mark"><img src="/brand/webtokoku-logo.svg" alt=""></span>
+        webtokoku
+      </a>
+      <div class="top-actions">
+        <a class="btn" href="/demo/makanan.html" target="_blank" rel="noopener">Lihat template live</a>
+        <a class="btn primary" href="/auth/register">Buat toko gratis</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Demo simulasi tanpa login</div>
+        <h1>Coba alur bikin toko tanpa menyimpan data.</h1>
+        <p>Demo ini memakai template live Dapur Nusantara dalam mode simulasi. Kamu bisa mengedit bagian yang memang diizinkan sistem, melihat katalog, dan membuka dashboard contoh tanpa membuat akun.</p>
+        <div class="top-actions">
+          <button class="btn primary" onclick="showStep(3)">Coba edit hero</button>
+          <button class="btn" onclick="showStep(5)">Lihat dashboard</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="mini-window">
+          <div class="window-bar">
+            <span class="circle"></span><span class="circle"></span><span class="circle"></span>
+            <span class="url">webtokoku.id/demo/makanan.html</span>
+          </div>
+          <div class="mini-store">
+            <h2 id="miniTitle">Cita Rasa Asli Nusantara</h2>
+            <p id="miniDesc">Template kuliner dengan katalog, promo, outlet, dan checkout WhatsApp.</p>
+            <a class="btn dark" href="/demo/makanan.html" target="_blank" rel="noopener">Buka template</a>
+            <div class="mini-products">
+              <div>Rendang<br><small>Rp 120K</small></div>
+              <div>Sate<br><small>Rp 65K</small></div>
+              <div>Sambal<br><small>Rp 35K</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="steps" aria-label="Demo steps">
+      <button class="step-btn active" onclick="showStep(1)">1. Setup toko</button>
+      <button class="step-btn" onclick="showStep(2)">2. Pilih template</button>
+      <button class="step-btn" onclick="showStep(3)">3. Edit template</button>
+      <button class="step-btn" onclick="showStep(4)">4. Katalog & order</button>
+      <button class="step-btn" onclick="showStep(5)">5. Dashboard</button>
+    </nav>
+
+    <section class="section active" id="step1">
+      <div class="section-head">
+        <div>
+          <h2>Setup toko dibuat ringkas.</h2>
+          <p>Simulasi ini hanya memperlihatkan alur. Tidak ada data yang dikirim ke server.</p>
+        </div>
+        <i class="fa-solid fa-clipboard-check" style="font-size:36px;color:var(--brand)"></i>
+      </div>
+      <div class="grid">
+        <div class="card"><i class="fa-solid fa-store"></i><strong>Profil toko</strong><span>Nama toko, slug, kategori, dan deskripsi.</span></div>
+        <div class="card"><i class="fa-brands fa-whatsapp"></i><strong>Kontak order</strong><span>WhatsApp untuk chat dan checkout.</span></div>
+        <div class="card"><i class="fa-solid fa-location-dot"></i><strong>Alamat & cabang</strong><span>Alamat utama dan outlet tambahan.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="step2">
+      <div class="section-head">
+        <div>
+          <h2>Pilih template, lalu edit kontennya.</h2>
+          <p>Template punya section yang sama, tapi tampilan tiap template beda sesuai kategori usaha.</p>
+        </div>
+        <a class="btn" href="/demo/skincare.html" target="_blank" rel="noopener">Coba Glow Lab</a>
+      </div>
+      <div class="grid">
+        <div class="card"><i class="fa-solid fa-utensils"></i><strong>Dapur Nusantara</strong><span>Kuliner, katering, frozen food.</span></div>
+        <div class="card"><i class="fa-solid fa-shirt"></i><strong>Butik Hana</strong><span>Fashion dan apparel.</span></div>
+        <div class="card"><i class="fa-solid fa-heart-pulse"></i><strong>Bazzhealth</strong><span>Produk kesehatan dan suplemen.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="step3">
+      <div class="section-head">
+        <div>
+          <h2>Edit template asli, tapi dibatasi.</h2>
+          <p>Di demo ini hanya bagian hero yang bisa diubah: judul, deskripsi, dan gambar. Ini meniru batasan sistem editor asli.</p>
+        </div>
+        <i class="fa-solid fa-pen-to-square" style="font-size:36px;color:var(--brand)"></i>
+      </div>
+      <div class="sim-editor">
+        <div class="sim-preview-shell">
+          <div class="sim-preview-toolbar">
+            <div>
+              <strong>Preview template live</strong>
+              <span> Klik judul/deskripsi/gambar hero untuk memilih field.</span>
+            </div>
+            <button class="btn" onclick="resetDemo()">Reset</button>
+          </div>
+          <div class="frame-wrap">
+            <iframe id="templateFrame" src="/demo/makanan.html" title="Template Dapur Nusantara"></iframe>
+          </div>
+        </div>
+
+        <aside class="sim-panel">
+          <h3>Hero section</h3>
+          <p class="panel-note">Perubahan hanya berjalan di browser kamu dan tidak disimpan.</p>
+          <div class="field">
+            <label>Judul hero</label>
+            <textarea id="heroTitleInput" rows="3">Cita Rasa Asli Nusantara.</textarea>
+            <span class="hint">Inline: klik judul di preview.</span>
+          </div>
+          <div class="field">
+            <label>Deskripsi hero</label>
+            <textarea id="heroDescInput" rows="5">Nikmati kelezatan masakan rumahan. Setiap porsi dimasak fresh dan bisa dipesan lewat WhatsApp.</textarea>
+          </div>
+          <div class="field">
+            <label>Gambar hero</label>
+            <input id="heroImageInput" value="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=800&auto=format&fit=crop" />
+            <span class="hint">Rekomendasi 1600 x 1200 px atau rasio 4:3.</span>
+          </div>
+          <div class="field">
+            <label>Upload lokal simulasi</label>
+            <input id="heroFileInput" type="file" accept="image/*" />
+          </div>
+          <button class="btn primary" style="width:100%;" onclick="fakeSave()">Simpan draft simulasi</button>
+          <div class="allowed-box">Yang boleh di demo: edit hero, ganti gambar, lihat katalog, lihat dashboard contoh. Produk, order, publish, dan akun asli dikunci.</div>
+          <div class="toast" id="toast">Draft simulasi tersimpan di layar ini saja.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="step4">
+      <div class="section-head">
+        <div>
+          <h2>Katalog dan order dibuat seperti sistem asli.</h2>
+          <p>Demo memperlihatkan alur pembeli memilih produk dan chat WhatsApp. Transaksi asli tetap dikunci di mode simulasi.</p>
+        </div>
+        <a class="btn" href="/demo/makanan.html#menu" target="_blank" rel="noopener">Lihat katalog live</a>
+      </div>
+      <div class="grid">
+        <div class="card"><i class="fa-solid fa-box"></i><strong>Produk aktif</strong><span>Foto, harga, stok, kategori, dan deskripsi.</span></div>
+        <div class="card"><i class="fa-solid fa-layer-group"></i><strong>Kategori</strong><span>Bisa ditampilkan atau disembunyikan sesuai toko.</span></div>
+        <div class="card"><i class="fa-brands fa-whatsapp"></i><strong>Checkout WA</strong><span>Ringkasan order dibuat rapi untuk admin.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="step5">
+      <div class="section-head">
+        <div>
+          <h2>Dashboard simulasi yang mirip kerja harian seller.</h2>
+          <p>Ini contoh pusat kerja seller: pesanan, produk, kesiapan toko, dan shortcut edit template.</p>
+        </div>
+        <a class="btn primary" href="/auth/register">Mulai buat toko</a>
+      </div>
+      <div class="dashboard-demo">
+        <aside class="dash-side">
+          <strong>Webtokoku</strong>
+          <div class="dash-link"><i class="fa-solid fa-chart-line"></i> Dashboard</div>
+          <div class="dash-link"><i class="fa-solid fa-box"></i> Produk</div>
+          <div class="dash-link"><i class="fa-solid fa-receipt"></i> Pesanan</div>
+          <div class="dash-link"><i class="fa-solid fa-pen"></i> Edit Template</div>
+          <div class="dash-link"><i class="fa-solid fa-gear"></i> Pengaturan</div>
+        </aside>
+        <div class="dash-main">
+          <div class="dash-head">
+            <div>
+              <h3 style="margin:0;">Dapur Nusantara</h3>
+              <p>Mode simulasi. Data tidak tersimpan.</p>
+            </div>
+            <button class="btn" disabled>Terbitkan dikunci</button>
+          </div>
+          <div class="dash-stats">
+            <div class="stat"><b>4</b><span>Pesanan perlu dicek</span></div>
+            <div class="stat"><b>18</b><span>Produk aktif</span></div>
+            <div class="stat"><b>3</b><span>Kategori</span></div>
+            <div class="stat"><b>3/4</b><span>Kesiapan toko</span></div>
+          </div>
+          <div class="dash-grid">
+            <div class="table-card">
+              <h3>Pesanan terbaru</h3>
+              <table>
+                <tbody>
+                  <tr><td>#1024</td><td>Rendang 2x</td><td><span class="tag">Perlu cek</span></td></tr>
+                  <tr><td>#1023</td><td>Sate ayam 4x</td><td><span class="tag">Diproses</span></td></tr>
+                  <tr><td>#1022</td><td>Paket keluarga</td><td><span class="tag">Selesai</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="todo-card">
+              <h3>Checklist toko</h3>
+              <div class="todo">Isi alamat utama dan cabang outlet.</div>
+              <div class="todo">Upload minimal 5 foto produk.</div>
+              <div class="todo">Cek nomor WhatsApp order.</div>
+              <div class="todo">Publish setelah draft rapi.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Demo ini simulasi ketat: tidak login, tidak publish, tidak menyimpan database, dan hanya mengizinkan aksi yang dipakai untuk memahami alur Webtokoku.
+    </div>
+  </main>
+
+  <script>
+    const allowedKeys = new Set(['hero.title', 'hero.subtitle', 'hero.image_url'])
+    const defaults = {
+      title: 'Cita Rasa Asli Nusantara.',
+      desc: 'Nikmati kelezatan masakan rumahan. Setiap porsi dimasak fresh dan bisa dipesan lewat WhatsApp.',
+      image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=800&auto=format&fit=crop'
+    }
+    let selectedKey = 'hero.title'
+
+    function showStep(step) {
+      document.querySelectorAll('.section').forEach((el, index) => el.classList.toggle('active', index === step - 1))
+      document.querySelectorAll('.step-btn').forEach((el, index) => el.classList.toggle('active', index === step - 1))
+      document.querySelector('.section.active').scrollIntoView({ behavior: 'smooth', block: 'start' })
+      if (step === 3) setTimeout(applyDemoValues, 250)
+    }
+
+    function frameDoc() {
+      const frame = document.getElementById('templateFrame')
+      return frame && frame.contentDocument
+    }
+
+    function setOutline(key) {
+      const doc = frameDoc()
+      if (!doc) return
+      doc.querySelectorAll('[data-demo-target]').forEach(el => el.removeAttribute('data-demo-target'))
+      const el = doc.querySelector('[data-editable="' + key + '"]')
+      if (el) el.setAttribute('data-demo-target', 'true')
+    }
+
+    function applyDemoValues() {
+      const doc = frameDoc()
+      if (!doc) return
+      const titleEl = doc.querySelector('[data-editable="hero.title"]')
+      const descEl = doc.querySelector('[data-editable="hero.subtitle"]')
+      const imageWrap = doc.querySelector('[data-editable="hero.image_url"]')
+      const imageEl = imageWrap ? imageWrap.querySelector('img') : null
+      const title = document.getElementById('heroTitleInput').value
+      const desc = document.getElementById('heroDescInput').value
+      const image = document.getElementById('heroImageInput').value
+
+      if (titleEl) titleEl.textContent = title
+      if (descEl) descEl.textContent = desc
+      if (imageEl && image) imageEl.src = image
+      document.getElementById('miniTitle').textContent = title.replace(/\s+/g, ' ').trim()
+      document.getElementById('miniDesc').textContent = desc
+      setOutline(selectedKey)
+    }
+
+    function bindFrame() {
+      const doc = frameDoc()
+      if (!doc) return
+      const style = doc.createElement('style')
+      style.textContent = '[data-demo-target]{outline:3px solid #16a34a!important;outline-offset:6px!important;border-radius:10px!important;} [data-editable]{cursor:pointer;}'
+      doc.head.appendChild(style)
+      doc.addEventListener('click', event => {
+        const editable = event.target.closest('[data-editable]')
+        if (!editable) return
+        const key = editable.getAttribute('data-editable')
+        if (!allowedKeys.has(key)) {
+          showToast('Bagian itu dikunci di demo. Coba hero judul, deskripsi, atau gambar.')
+          return
+        }
+        selectedKey = key
+        setOutline(key)
+        showToast(key === 'hero.image_url' ? 'Ganti gambar dari panel kanan.' : 'Edit teks dari panel kanan.')
+      })
+      applyDemoValues()
+    }
+
+    function fakeSave() {
+      applyDemoValues()
+      showToast('Draft simulasi tersimpan di layar ini saja.')
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast')
+      toast.textContent = text
+      toast.classList.add('show')
+      clearTimeout(window.toastTimer)
+      window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2800)
+    }
+
+    function resetDemo() {
+      document.getElementById('heroTitleInput').value = defaults.title
+      document.getElementById('heroDescInput').value = defaults.desc
+      document.getElementById('heroImageInput').value = defaults.image
+      selectedKey = 'hero.title'
+      applyDemoValues()
+      showToast('Demo dikembalikan ke konten awal.')
+    }
+
+    document.getElementById('templateFrame').addEventListener('load', bindFrame)
+    document.getElementById('heroTitleInput').addEventListener('input', applyDemoValues)
+    document.getElementById('heroDescInput').addEventListener('input', applyDemoValues)
+    document.getElementById('heroImageInput').addEventListener('input', applyDemoValues)
+    document.getElementById('heroFileInput').addEventListener('change', event => {
+      const file = event.target.files && event.target.files[0]
+      if (!file) return
+      const url = URL.createObjectURL(file)
+      document.getElementById('heroImageInput').value = url
+      selectedKey = 'hero.image_url'
+      applyDemoValues()
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* src/styles/herbaTemplate.css */
+
+[data-template="herba"] {
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --color-primary: #2d6a4f; /* earthy green */
+  --color-secondary: #a3b18a; /* muted olive */
+  --bg-color: #f8faf5; /* off‑white */
+  --text-color: #1f332b; /* deep forest */
+  
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+/* Navbar – clean, no blur */
+.herba-nav {
+  background: var(--bg-color);
+  border-bottom: 1px solid #e5e7eb;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.herba-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.herba-nav a:hover {
+  opacity: 0.8;
+}
+
+.herba-wa-btn {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: all 0.2s ease-in-out;
+}
+
+.herba-wa-btn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* Mobile drawer */
+.herba-drawer {
+  background: var(--bg-color);
+  border-left: 1px solid #e5e7eb;
+  width: 280px;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hero – comfortable vertical spacing */
+.herba-hero {
+  padding-top: 5rem; /* account for fixed navbar */
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .herba-hero {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Catalog – ensure product cards are not too small */
+.herba-catalog .product-card {
+  min-width: 220px;
+}
+
+/* Footer – dark earthy background */
+.herba-footer {
+  background: linear-gradient(180deg, #214D3A 0%, #17382B 100%);
+  color: #fff;
+  padding: 80px 8% 40px;
+}
+.herba-footer .f-grid {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  text-align: left;
+}
+.herba-footer .f-col h4 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.herba-footer .f-col p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+.herba-footer .f-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.herba-footer .f-col ul li a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.74);
+  transition: color 0.2s;
+}
+.herba-footer .f-col ul li a:hover {
+  color: #fff;
+}
+.herba-footer .f-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.58);
+}
+.herba-footer .f-bottom a {
+  color: #fff;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .herba-footer { padding: 50px 5% 30px; }
+  .herba-footer .f-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; margin-bottom: 40px; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .herba-nav { padding: 0.875rem 1.5rem; }
+  .herba-hero { padding: 5rem 1.5rem 2.5rem; }
+  .herba-footer { padding: 58px 5% 34px; }
+  .herba-footer .f-grid { gap: 36px; }
+}
+
+@media (max-width: 640px) {
+  .herba-nav { padding: 0.75rem 1rem; }
+  .herba-nav a { font-size: 0.75rem; letter-spacing: 0.05em; }
+  .herba-hero { padding: 4.5rem 1rem 2rem; }
+  .herba-footer { padding: 42px 16px 28px; }
+  .herba-footer .f-grid { gap: 28px; text-align: left; margin-bottom: 30px; }
+  .herba-footer .f-bottom { text-align: left; line-height: 1.6; }
+}

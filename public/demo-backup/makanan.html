@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapur Nusantara - Masakan Asli Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-brown: #3E2723;
+            --accent-orange: #D86B43;
+            --bg-cream: #FDFBF7;
+            --wa-green: #25D366;
+            --wa-green-hover: #1da851;
+            --text-gray: #6B5C53;
+            --border-light: #E8E3DD;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-italic: 'Playfair Display', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background-color: var(--bg-cream); color: var(--dark-brown); overflow-x: hidden; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        img { width: 100%; display: block; }
+
+        /* Navbar */
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border-light); }
+        .logo { font-size: 24px; font-weight: 800; display: flex; flex-direction: column; line-height: 1; letter-spacing: -0.5px; }
+        .logo span { font-size: 10px; font-weight: 600; color: var(--text-gray); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 600; font-size: 14px; color: var(--text-gray); transition: 0.3s; }
+        .nav-links a:hover { color: var(--dark-brown); }
+        .btn-wa-nav { background: var(--wa-green); color: white; padding: 10px 24px; border-radius: 100px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-wa-nav:hover { background: var(--wa-green-hover); transform: translateY(-2px); }
+
+        /* Floating WA */
+        .float-wa { position: fixed; bottom: 30px; right: 30px; background: var(--wa-green); color: white; padding: 15px 25px; border-radius: 100px; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(37,211,102,0.3); z-index: 999; transition: 0.3s; }
+        .float-wa:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37,211,102,0.4); }
+
+        /* Hero */
+        .hero { min-height: 100vh; padding: 120px 5% 60px; display: flex; align-items: center; gap: 50px; }
+        .hero-text { flex: 1.2; padding-right: 20px; }
+        .hero-text h1 { font-size: clamp(3rem, 6vw, 6rem); font-weight: 800; line-height: 1.05; margin-bottom: 25px; letter-spacing: -2px; }
+        .hero-text h1 .italic-accent { font-family: var(--font-italic); font-weight: 700; font-style: italic; color: var(--accent-orange); font-size: 1.05em; }
+        .hero-text p { font-size: 1.15rem; color: var(--text-gray); max-width: 500px; margin-bottom: 40px; }
+        
+        .hero-btns { display: flex; gap: 15px; align-items: center; margin-bottom: 40px; flex-wrap: wrap; }
+        .btn-dark { background: var(--dark-brown); color: white; padding: 16px 32px; border-radius: 100px; font-weight: 700; font-size: 15px; transition: 0.3s; }
+        .btn-dark:hover { background: var(--accent-orange); }
+        .btn-wa-lg { background: var(--wa-green); color: white; padding: 16px 32px; border-radius: 100px; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-wa-lg:hover { background: var(--wa-green-hover); }
+        
+        .hero-stats { display: flex; align-items: center; gap: 15px; }
+        .avatars { display: flex; }
+        .avatars img { width: 45px; height: 45px; border-radius: 50%; border: 3px solid var(--bg-cream); margin-left: -15px; object-fit: cover; }
+        .avatars img:first-child { margin-left: 0; }
+        .stat-circle { width: 45px; height: 45px; border-radius: 50%; background: var(--accent-orange); color: white; display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 12px; border: 3px solid var(--bg-cream); margin-left: -15px; z-index: 10; }
+        .stat-text { font-size: 13px; font-weight: 700; line-height: 1.4; color: var(--dark-brown); }
+
+        .hero-img-wrap { flex: 1; position: relative; height: 600px; }
+        .arch-img { position: absolute; right: 0; top: 0; width: 85%; height: 80%; border-radius: 300px 300px 20px 20px; overflow: hidden; }
+        .arch-img img { width: 100%; height: 100%; object-fit: cover; }
+        .float-img { position: absolute; left: 0; bottom: 0; width: 55%; aspect-ratio: 1; border-radius: 20px; overflow: hidden; border: 12px solid var(--bg-cream); box-shadow: 0 20px 40px rgba(0,0,0,0.08); z-index: 2; }
+        .float-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Spinning Badge */
+        .spin-badge { position: absolute; top: 30%; left: 0; width: 130px; height: 130px; background: var(--accent-orange); border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 3; color: white; font-weight: 800; font-size: 24px; border: 4px solid var(--bg-cream); }
+        .spin-text { position: absolute; width: 100%; height: 100%; animation: spin 10s linear infinite; }
+        .spin-text svg { width: 100%; height: 100%; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Menu Section */
+        .menu-sec { padding: 80px 5%; }
+        .menu-header { margin-bottom: 50px; }
+        .menu-header h2 { font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 15px; }
+        .menu-header h2 .italic-accent { font-family: var(--font-italic); font-style: italic; color: var(--accent-orange); font-weight: 600; }
+        
+        .menu-top-row { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
+        .menu-desc { max-width: 500px; color: var(--text-gray); font-size: 1.1rem; }
+        .filters { display: flex; gap: 15px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 24px; border-radius: 100px; border: 1px solid var(--border-light); background: white; font-weight: 700; font-size: 13px; color: var(--text-gray); cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .filter-btn.active, .filter-btn:hover { background: var(--dark-brown); color: white; border-color: var(--dark-brown); }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .menu-card { cursor: pointer; group; }
+        .mc-img { height: 350px; border-radius: 30px 30px 10px 10px; overflow: hidden; position: relative; margin-bottom: 20px; }
+        .mc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .menu-card:hover .mc-img img { transform: scale(1.05); }
+        .mc-badge { position: absolute; top: 15px; left: 15px; background: white; color: var(--accent-orange); padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .mc-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .mc-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; }
+        .mc-price { font-size: 1.25rem; font-weight: 800; color: var(--accent-orange); }
+
+        /* Promo Bento */
+        .promo-sec { padding: 80px 5%; }
+        .promo-header { text-align: center; margin-bottom: 50px; }
+        .promo-header h2 { font-size: clamp(2rem, 3vw, 3rem); font-weight: 800; letter-spacing: -1px; }
+        .promo-header h2 .italic-accent { font-family: var(--font-italic); font-style: italic; color: var(--text-gray); font-weight: 600; }
+        
+        .promo-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
+        .promo-main { background: #3E2723; border-radius: 30px; overflow: hidden; position: relative; color: white; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; min-height: 500px; }
+        .promo-main-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
+        .promo-main:hover .promo-main-bg { opacity: 0.8; transform: scale(1.02); }
+        .promo-content { position: relative; z-index: 2; }
+        .p-badge { background: var(--accent-orange); color: white; padding: 6px 16px; border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+        .promo-main h3 { font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 15px; letter-spacing: -1px; }
+        .promo-main p { font-size: 1.1rem; max-width: 400px; margin-bottom: 30px; color: #E8E3DD; }
+        
+        .promo-side { display: flex; flex-direction: column; gap: 30px; }
+        .promo-box { background: #F3EBE3; border-radius: 30px; padding: 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .promo-box:nth-child(2) { background: #E8F5E9; }
+        .p-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.05); display: flex; justify-content: center; align-items: center; color: var(--accent-orange); font-size: 20px; margin-bottom: 20px; }
+        .promo-box:nth-child(2) .p-icon { color: var(--wa-green); }
+        .promo-box h4 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+        .promo-box p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Outlet */
+        .outlet-sec { padding: 100px 5%; border-top: 1px solid var(--border-light); }
+        .outlet-header { margin-bottom: 50px; }
+        .outlet-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .outlet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .outlet-card h4 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+        .outlet-card p { color: var(--text-gray); margin-bottom: 20px; font-size: 0.95rem; }
+        .btn-link-dark { font-weight: 700; font-size: 14px; color: var(--dark-brown); border-bottom: 2px solid var(--dark-brown); padding-bottom: 4px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-link-dark:hover { color: var(--accent-orange); border-color: var(--accent-orange); gap: 12px; }
+
+        /* Footer */
+        footer { padding: 80px 5% 40px; border-top: 1px solid var(--border-light); }
+        .f-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .f-desc { color: var(--text-gray); max-width: 300px; margin-top: 20px; font-size: 15px; }
+        .f-col h5 { font-size: 1rem; font-weight: 800; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .f-col ul { list-style: none; }
+        .f-col ul li { margin-bottom: 15px; }
+        .f-col a { color: var(--text-gray); font-weight: 500; font-size: 15px; transition: 0.3s; }
+        .f-col a:hover { color: var(--accent-orange); }
+        .f-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; border-top: 1px solid var(--border-light); color: var(--text-gray); font-size: 13px; font-weight: 500; }
+
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; gap: 60px; padding-top: 140px; }
+            .hero-text { padding: 0; display: flex; flex-direction: column; align-items: center; }
+            .hero-btns { justify-content: center; }
+            .hero-img-wrap { width: 100%; max-width: 600px; margin: 0 auto; height: 500px; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .promo-grid { grid-template-columns: 1fr; }
+            .promo-main { min-height: 400px; }
+            .promo-side { flex-direction: row; }
+            .f-top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .promo-side { flex-direction: column; }
+            .outlet-grid { grid-template-columns: 1fr; }
+            .f-top { grid-template-columns: 1fr; text-align: center; }
+            .f-desc { margin: 20px auto; }
+            .f-bottom { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            Dapur Nusantara.
+            <span>Sejak 2010 • Jakarta</span>
+        </div>
+        <div class="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#promo">Promo</a>
+            <a href="#outlet">Outlet</a>
+        </div>
+        <a href="https://wa.me/6281234567890" class="btn-wa-nav">
+            <i class="fa-brands fa-whatsapp"></i> Order WA
+        </a>
+    </nav>
+
+    <a href="https://wa.me/6281234567890" class="float-wa">
+        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Chat WhatsApp
+    </a>
+
+    <section class="hero" data-section-id="hero">
+        <div class="hero-text">
+            <h1 data-editable="hero.title">Cita Rasa <br><span class="italic-accent">Asli</span> Nusantara.</h1>
+            <p data-editable="hero.subtitle">Nikmati kelezatan sejati masakan rumahan. Setiap porsi dimasak dengan 100% bumbu alami dan resep warisan turun-temurun keluarga kami.</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn-dark">Lihat Menu</a>
+                <a href="https://wa.me/6281234567890" class="btn-wa-lg"><i class="fa-solid fa-comment-dots"></i> Chat Admin</a>
+            </div>
+            <div class="hero-stats">
+                <div class="avatars">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" alt="User">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop" alt="User">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="User">
+                    <div class="stat-circle">50+</div>
+                </div>
+                <div class="stat-text">Menu Harian<br><span style="font-weight:500; color:var(--text-gray);">Dimasak fresh</span></div>
+            </div>
+        </div>
+        <div class="hero-img-wrap">
+            <div class="arch-img" data-editable="hero.image_url">
+                <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=600&auto=format&fit=crop" alt="Ayam Penyet">
+            </div>
+            <div class="float-img">
+                <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?q=80&w=600&auto=format&fit=crop" alt="Rendang">
+            </div>
+            <div class="spin-badge">
+                <!-- SVG for circular text -->
+                <div class="spin-text">
+                    <svg viewBox="0 0 100 100">
+                        <path d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" id="circle" fill="none" />
+                        <text font-size="13" font-weight="800" fill="white" letter-spacing="2">
+                            <textPath href="#circle">
+                                DIMASAK FRESH SETIAP HARI •
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <i class="fa-solid fa-fire" style="font-size: 28px;"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-sec" id="menu">
+        <div class="menu-header">
+            <h2>Menu <span class="italic-accent">Andalan</span> Kami</h2>
+            <div class="menu-top-row">
+                <p class="menu-desc">Mulai dari rendang sapi yang empuk hingga sate ayam bumbu kacang kental, temukan kelezatan masakan rumahan di setiap gigitan.</p>
+                <div class="filters">
+                    <button class="filter-btn active">Semua</button>
+                    <button class="filter-btn">Lauk Pauk</button>
+                    <button class="filter-btn">Frozen Food</button>
+                    <button class="filter-btn">Sambal</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <!-- 1 -->
+            <div class="menu-card">
+                <div class="mc-img">
+                    <span class="mc-badge">Lauk Pauk</span>
+                    <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?q=80&w=600&auto=format&fit=crop" alt="Rendang">
+                </div>
+                <h3 class="mc-title">Rendang Daging Sapi</h3>
+                <p class="mc-desc">Daging sapi lulur dalam pilihan yang dimasak perlahan selama 8 jam dengan rempah rahasia khas Minang.</p>
+                <div class="mc-price">Rp 120.000</div>
+            </div>
+            <!-- 2 -->
+            <div class="menu-card">
+                <div class="mc-img">
+                    <span class="mc-badge">Frozen Food</span>
+                    <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=600&auto=format&fit=crop" alt="Sate">
+                </div>
+                <h3 class="mc-title">Sate Ayam Madura (Isi 20)</h3>
+                <p class="mc-desc">Frozen sate full daging ayam (tanpa lemak) yang dibakar setengah matang. Termasuk bumbu kacang kental.</p>
+                <div class="mc-price">Rp 65.000</div>
+            </div>
+            <!-- 3 -->
+            <div class="menu-card">
+                <div class="mc-img">
+                    <span class="mc-badge">Lauk Pauk</span>
+                    <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=600&auto=format&fit=crop" alt="Ayam Penyet">
+                </div>
+                <h3 class="mc-title">Ayam Penyet Kremes</h3>
+                <p class="mc-desc">1 Ekor ayam kampung ungkep bumbu kuning. Empuk hingga ke tulang, disajikan dengan kremesan gurih.</p>
+                <div class="mc-price">Rp 85.000</div>
+            </div>
+            <!-- 4 -->
+            <div class="menu-card">
+                <div class="mc-img">
+                    <span class="mc-badge">Sambal</span>
+                    <img src="https://images.unsplash.com/photo-1563379926880-f9a86dd64d6c?q=80&w=600&auto=format&fit=crop" alt="Sambal">
+                </div>
+                <h3 class="mc-title">Sambal Bawang Extra Pedas</h3>
+                <p class="mc-desc">Sambal botolan homemade yang pedasnya nendang. Tahan hingga 1 bulan di kulkas. Cocok untuk semua lauk.</p>
+                <div class="mc-price">Rp 35.000</div>
+            </div>
+            <!-- 5 -->
+            <div class="menu-card">
+                <div class="mc-img">
+                    <span class="mc-badge">Frozen Food</span>
+                    <img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?q=80&w=600&auto=format&fit=crop" alt="Dimsum">
+                </div>
+                <h3 class="mc-title">Dimsum Mentai Premium</h3>
+                <p class="mc-desc">Isian udang dan ayam dengan saus mentai. Cek stok sebelum order.</p>
+                <div class="mc-price">Rp 45.000</div>
+            </div>
+            <!-- 6 -->
+            <div class="menu-card">
+                <div class="mc-img">
+                    <span class="mc-badge">Minuman</span>
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=600&auto=format&fit=crop" alt="Es Jeruk">
+                </div>
+                <h3 class="mc-title">Es Jeruk Sonkit Selasih</h3>
+                <p class="mc-desc">Minuman segar perasan jeruk sonkit asli dengan biji selasih. Sangat cocok sebagai pendamping makanan pedas.</p>
+                <div class="mc-price">Rp 20.000</div><div style="margin-top:12px;"><a href="https://wa.me/6281234567890" style="display:inline-block;background:#25D366;color:white;padding:10px 18px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;">Pesan via WA</a></div></div></div>
+    </section>
+
+    <section class="promo-sec" id="promo">
+        <div class="promo-header">
+            <h2>Selalu Ada Yang <span class="italic-accent">Istimewa</span></h2>
+        </div>
+        <div class="promo-grid">
+            <div class="promo-main">
+                <img src="https://images.unsplash.com/photo-1627042633145-b780d842ba45?q=80&w=1000&auto=format&fit=crop" alt="Tumpeng" class="promo-main-bg">
+                <div class="promo-content">
+                    <div class="p-badge"><i class="fa-solid fa-tag"></i> WEEKEND EXCLUSIVE - HEMAT 20%</div>
+                    <h3>Makan<br>Puas!</h3>
+                    <p>Diskon 20% untuk semua pemesanan Paket Keluarga (isi 5-8 porsi) setiap hari Sabtu & Minggu. Bebas repot masak saat kumpul keluarga.</p>
+                </div>
+            </div>
+            <div class="promo-side">
+                <div class="promo-box">
+                    <div class="p-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h4>Kirim Instan</h4>
+                    <p>Pesanan Anda langsung diproses dan dikirim via kurir instan/sameday ke seluruh area Jabodetabek. Jaminan sampai di hari yang sama.</p>
+                </div>
+                <div class="promo-box">
+                    <div class="p-icon"><i class="fa-regular fa-face-smile-beam"></i></div>
+                    <h4>Pesan via WA</h4>
+                    <p>Tanya-tanya dulu? Boleh banget. Admin ramah kami siap membantu mengatur pesanan custom sesuai selera dan budget Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="outlet-sec" id="outlet">
+        <div class="outlet-header">
+            <h2>Kunjungi Dapur Kami</h2>
+            <p style="color: var(--text-gray); font-size: 1.1rem;">Aroma rempah nusantara akan menyambut langkah Anda.</p>
+        </div>
+        <div class="outlet-grid">
+            <div class="outlet-card">
+                <h4>Kemang Raya</h4>
+                <p>Jl. Kemang Raya No. 45, Jakarta Selatan. Buka setiap hari, 09.00 - 21.00 WIB.</p>
+                <a href="https://wa.me/6281234567890" class="btn-link-dark">Chat Outlet <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="outlet-card">
+                <h4>Kelapa Gading</h4>
+                <p>Jl. Boulevard Barat Blok A No. 12, Jakarta Utara. Buka setiap hari, 10.00 - 22.00 WIB.</p>
+                <a href="https://wa.me/6281234567890" class="btn-link-dark">Chat Outlet <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="outlet-card">
+                <h4>Bintaro Sektor 7</h4>
+                <p>Kawasan Niaga Bintaro Sektor 7, Tangerang Selatan. Buka setiap hari, 08.00 - 20.00 WIB.</p>
+                <a href="https://wa.me/6281234567890" class="btn-link-dark">Chat Outlet <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Value Propositions -->
+    <section id="value_props" data-section="value_props" data-editable-section-visible="value_props.visible" style="padding: 80px 10%; background: #fffbf5;">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 data-editable="value_props.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark-brown);">Mengapa Memilih Kami</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1000px; margin: 0 auto;">
+            <div style="text-align: center;">
+                <div style="width:64px;height:64px;margin:0 auto 20px;border:1px solid #e0d5c8;border-radius:50%;display:grid;place-items:center;font-weight:800;color:var(--accent-orange);">01</div>
+                <h3 data-editable="value_props.prop1_title" style="font-size: 20px; margin-bottom: 10px; color: var(--dark-brown);">Masakan Fresh</h3>
+                <p data-editable="value_props.prop1_desc" style="color: var(--text-gray);">Dimasak fresh setiap hari tanpa bahan pengawet</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="width:64px;height:64px;margin:0 auto 20px;border:1px solid #e0d5c8;border-radius:50%;display:grid;place-items:center;font-weight:800;color:var(--accent-orange);">02</div>
+                <h3 data-editable="value_props.prop2_title" style="font-size: 20px; margin-bottom: 10px; color: var(--dark-brown);">Opsi pengiriman</h3>
+                <p data-editable="value_props.prop2_desc" style="color: var(--text-gray);">Kurir instan/sameday untuk area Jakarta</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="width:64px;height:64px;margin:0 auto 20px;border:1px solid #e0d5c8;border-radius:50%;display:grid;place-items:center;font-weight:800;color:var(--accent-orange);">03</div>
+                <h3 data-editable="value_props.prop3_title" style="font-size: 20px; margin-bottom: 10px; color: var(--dark-brown);">Resep Warisan</h3>
+                <p data-editable="value_props.prop3_desc" style="color: var(--text-gray);">Rasa otentik turun-temurun dari 2010</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Reviews -->
+    <section id="reviews" data-section="reviews" data-editable-section-visible="reviews.visible" style="padding: 80px 10%; background: #fff;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 data-editable="reviews.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark-brown);">Testimoni Pelanggan</h2>
+        </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px; background: #fffbf5; border-radius: 16px;">
+            <p data-editable="reviews.content" style="font-size: 18px; line-height: 1.8; color: var(--text-gray); font-style: italic;">"Rendangnya enak banget! Dagingnya empuk dan bumbunya meresap. Pasti order lagi!"</p>
+            <p data-editable="reviews.author" style="margin-top: 20px; font-weight: 600; color: var(--dark-brown);">— Budi, Jakarta Selatan</p>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Story -->
+    <section id="brand_story" data-section="brand_story" data-editable-section-visible="brand_story.visible" style="padding: 80px 10%; background: #fffbf5;">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <h2 data-editable="brand_story.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark-brown); margin-bottom: 20px;">Cerita Kami</h2>
+                <p data-editable="brand_story.content" style="font-size: 16px; line-height: 1.8; color: var(--text-gray);">Dapur Nusantara hadir sejak 2010 dengan misi melestarikan kelezatan masakan rumahan Indonesia. Setiap hidangan kami masak dengan cinta menggunakan resep warisan keluarga.</p>
+            </div>
+            <div data-editable="brand_story.image" style="background: #f0e6dc; border-radius: 16px; height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-gray);">
+                [Gambar Dapur/Chef]
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Gallery -->
+    <section id="brand_gallery" data-section="brand_gallery" data-editable-section-visible="brand_gallery.visible" style="padding: 80px 10%; background: #fff;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 data-editable="brand_gallery.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark-brown);">Galeri</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;">
+            <div data-editable="brand_gallery.image_1" style="aspect-ratio: 1; background: #f0e6dc; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-gray);">Foto 1</div>
+            <div data-editable="brand_gallery.image_2" style="aspect-ratio: 1; background: #f0e6dc; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-gray);">Foto 2</div>
+            <div data-editable="brand_gallery.image_3" style="aspect-ratio: 1; background: #f0e6dc; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-gray);">Foto 3</div>
+            <div data-editable="brand_gallery.image_4" style="aspect-ratio: 1; background: #f0e6dc; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-gray);">Foto 4</div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ -->
+    <section id="faq" data-section="faq" data-editable-section-visible="faq.visible" style="padding: 80px 10%; background: #fffbf5;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 data-editable="faq.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark-brown);">Pertanyaan Umum</h2>
+            </div>
+            <div>
+                <details data-editable="faq.q1" style="border: 1px solid #e0d5c8; border-radius: 12px; padding: 20px; margin-bottom: 15px; background: #fff;">
+                    <summary style="font-weight: 600; color: var(--dark-brown); cursor: pointer;">Berapa lama waktu pengiriman?</summary>
+                    <p data-editable="faq.a1" style="margin-top: 15px; color: var(--text-gray); line-height: 1.6;">Pengiriman instan 1-2 jam untuk area Jakarta. Same day untuk area sekitar.</p>
+                </details>
+                <details data-editable="faq.q2" style="border: 1px solid #e0d5c8; border-radius: 12px; padding: 20px; margin-bottom: 15px; background: #fff;">
+                    <summary style="font-weight: 600; color: var(--dark-brown); cursor: pointer;">Apakah bisa pesan untuk acara catering?</summary>
+                    <p data-editable="faq.a2" style="margin-top: 15px; color: var(--text-gray); line-height: 1.6;">Tentu! Kami melayani catering untuk acara kantor, arisan, dan keluarga.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="f-top">
+            <div>
+                <div class="logo">Dapur Nusantara.</div>
+                <p class="f-desc">Melestarikan kelezatan resep warisan keluarga sejak 2010. 100% Halal dan tanpa bahan pengawet.</p>
+            </div>
+            <div class="f-col">
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="#menu">Semua Menu</a></li>
+                    <li><a href="#promo">Promo & Diskon</a></li>
+                    <li><a href="#outlet">Lokasi Outlet</a></li>
+                    <li><a href="#">Katering & Event</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h5>Bantuan</h5>
+                <ul>
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Ongkos Kirim</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h5>Berlangganan</h5>
+                <p style="color: var(--text-gray); font-size: 14px; margin-bottom: 15px;">Dapatkan info diskon spesial mingguan.</p>
+                <a href="https://wa.me/6281234567890" style="display:inline-block; padding: 10px 20px; border: 1px solid var(--border-light); border-radius: 100px; font-weight: 700;">Daftar via WA</a>
+            </div>
+        </div>
+        <div class="f-bottom">
+            <div>&copy; 2026 Dapur Nusantara. Dibuat dengan <a href="#" style="color: var(--dark-brown); font-weight: 800;">webtokoku.</a></div>
+            <div style="display: flex; gap: 20px; font-size: 18px;">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+      const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 700'%3E%3Crect width='900' height='700' fill='%23FDFBF7'/%3E%3Cpath d='M120 150h660v400H120z' fill='%23FFF7EA' stroke='%23D86B43' stroke-width='4'/%3E%3Ctext x='450' y='350' font-family='Arial' font-size='42' fill='%233E2723' text-anchor='middle'%3EDapur Nusantara%3C/text%3E%3C/svg%3E";
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.src = fallbackImage;
+        }, { once: true });
+      });
+    </script>
+<script src="/demo/demo-engine.js"></script></body>
+</html>

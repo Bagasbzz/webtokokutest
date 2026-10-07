@@ -1,0 +1,743 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Lab — Skincare yang Beneran works</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sage: #8FA395;
+            --sage-light: #E8F0EB;
+            --warm: #F5F1EB;
+            --text: #3D3D3D;
+            --text-soft: #6B6B6B;
+            --accent: #D4A574;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'DM Sans', sans-serif; 
+            background-color: var(--warm); 
+            color: var(--text); 
+            line-height: 1.6;
+        }
+        
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* Navbar */
+        nav { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            padding: 16px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px); 
+            z-index: 999; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .logo { 
+            font-size: 22px; 
+            font-weight: 700; 
+            letter-spacing: -0.5px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            color: var(--text);
+        }
+        
+        .logo i { color: var(--sage); font-size: 20px; }
+        
+        .nav-links { display: flex; gap: 32px; }
+        
+        .nav-links a { 
+            font-weight: 500; 
+            color: var(--text-soft); 
+            font-size: 15px; 
+            transition: 0.3s; 
+        }
+        
+        .nav-links a:hover { color: var(--sage); }
+        
+        .btn-nav { 
+            background: var(--sage-light); 
+            color: var(--sage); 
+            padding: 10px 20px; 
+            border-radius: 100px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            transition: 0.3s; 
+            border: none; 
+            cursor: pointer; 
+        }
+        
+        .btn-nav:hover { background: var(--sage); color: white; }
+
+        /* Hero */
+        .hero { 
+            min-height: 100vh; 
+            padding: 120px 5% 80px; 
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-text h1 { 
+            font-size: clamp(2.8rem, 5vw, 4rem); 
+            font-weight: 700; 
+            line-height: 1.15; 
+            margin-bottom: 24px; 
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+        
+        .hero-text h1 span {
+            color: var(--sage);
+            font-style: italic;
+        }
+        
+        .hero-text > p { 
+            font-size: 1.15rem; 
+            color: var(--text-soft); 
+            margin-bottom: 32px; 
+            max-width: 480px; 
+        }
+        
+        .trust-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .pill {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-soft);
+            border: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .pill i { color: var(--sage); font-size: 12px; }
+        
+        .btn-main {
+            background: var(--text);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        
+        .btn-main:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+        }
+        
+        .skin-board {
+            position: relative;
+            min-height: 560px;
+        }
+
+        .skin-main-photo {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 78%;
+            height: 78%;
+            border-radius: 34px 34px 82px 34px;
+            overflow: hidden;
+            box-shadow: 0 34px 90px rgba(60,55,45,0.14);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .skin-main-photo img,
+        .skin-texture img { width: 100%; height: 100%; object-fit: cover; }
+
+        .skin-main-note {
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(0,0,0,0.12);
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .skin-main-note span { color: var(--sage); font-weight: 700; }
+
+        .skin-texture {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 46%;
+            aspect-ratio: 4 / 5;
+            border-radius: 26px;
+            overflow: hidden;
+            border: 10px solid var(--warm);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+        }
+
+        .skin-ingredients {
+            position: absolute;
+            right: 6%;
+            bottom: 4%;
+            width: 190px;
+            padding: 18px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.86);
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 18px 48px rgba(0,0,0,0.08);
+            display: grid;
+            gap: 8px;
+        }
+
+        .skin-ingredients span {
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 13px;
+            color: #3d473f;
+        }
+
+        .skin-ingredients span:last-child { border-bottom: 0; padding-bottom: 0; }
+
+        /* Problem Section */
+        .problem {
+            background: var(--sage);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        
+        .problem h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .problem p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products */
+        .products { padding: 100px 5%; }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .p-img {
+            height: 220px;
+            background: var(--sage-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .p-img img {
+            height: 85%;
+            object-fit: contain;
+            transition: 0.3s;
+        }
+        
+        .product-card:hover .p-img img {
+            transform: scale(1.05);
+        }
+        
+        .p-info { padding: 24px; }
+        
+        .p-tag {
+            display: inline-block;
+            background: var(--sage-light);
+            color: var(--sage);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .p-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .p-info > p {
+            font-size: 14px;
+            color: var(--text-soft);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .p-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 16px;
+        }
+        
+        .p-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        
+        .btn-wa:hover {
+            background: #1ebd5a;
+            transform: scale(1.05);
+        }
+
+        /* Testimonials */
+        .testi {
+            background: white;
+            padding: 100px 5%;
+        }
+        
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .testi-card {
+            background: var(--warm);
+            padding: 32px;
+            border-radius: 20px;
+        }
+        
+        .testi-card .stars {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        
+        .testi-card > p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .testi-author { border-top: 1px solid rgba(0,0,0,0.08); padding-top: 16px; }
+        
+        .testi-author div strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .testi-author div span {
+            font-size: 12px;
+            color: var(--text-soft);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+        
+        footer .logo {
+            color: white;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        footer > p {
+            opacity: 0.7;
+            font-size: 14px;
+            max-width: 400px;
+            margin: 0 auto 24px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-links a {
+            opacity: 0.7;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--sage-light);
+        }
+        
+        .copyright {
+            font-size: 13px;
+            opacity: 0.5;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-text { order: 2; }
+            .hero-text > p { margin: 0 auto 32px; }
+            .trust-pills { justify-content: center; }
+            .skin-board { order: 1; max-width: 520px; width: 100%; margin: 0 auto; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .testi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding-top: 120px; }
+            .hero h1 { font-size: 2.2rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .p-img { height: 200px; }
+            .skin-board { min-height: 430px; }
+            .skin-main-note, .skin-ingredients { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><i class="fa-solid fa-leaf"></i> Glow Lab</div>
+        <div class="nav-links">
+            <a href="#produk">Produk</a>
+            <a href="#testi">Review</a>
+            <a href="#tanya">FAQ</a>
+        </div>
+        <a href="https://wa.me/6281234567890" class="btn-nav"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Kulit glowing itu <span>gak harus mahal.</span></h1>
+            <p>Produk skincare dengan bahan aktif yang beneran works. Tanpa parfum, tanpa alcohol, cocok untuk sensitive skin. Dibuat oleh tim formulator lokal yang ngerti kulit Indonesia.</p>
+            
+            <div class="trust-pills">
+                <span class="pill">Tanpa parfum</span>
+                <span class="pill">Untuk pemakaian harian</span>
+                <span class="pill">Chat admin sebelum order</span>
+            </div>
+            
+            <a href="#produk" class="btn-main">Lihat Katalog <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="skin-board">
+            <div class="skin-main-photo">
+                <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=900&auto=format&fit=crop" alt="Skincare essentials">
+                <div class="skin-main-note">
+                    <span>Routine pagi</span>
+                    <strong>Cleanser, serum, moisturizer.</strong>
+                </div>
+            </div>
+            <div class="skin-texture">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=700&auto=format&fit=crop" alt="Tekstur skincare">
+            </div>
+            <div class="skin-ingredients">
+                <span>Niacinamide</span>
+                <span>Ceramide</span>
+                <span>Panthenol</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <h2>Kulit breakout terus, tapi bingung mau pakai apa?</h2>
+        <p>Kita paham banget frustrating-nya nyari skincare yang cocok. Makanya Glow Lab fokus ke formula yang gentle tapi efektif — tanpa gimmick, tanpa janji palsu.</p>
+    </section>
+
+    <section class="products" id="produk">
+        <div class="section-header">
+            <h2>Produk yang lagi hype</h2>
+            <p>Ribuan orang udah cobain dan balik lagi. Ini best sellers kami:</p>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card" data-product-name="Brightening Serum" data-product-price="" data-product-desc="Untuk bekas jerawat hitam dan kulit kusam. Hasil terlihat dalam 2 minggu." data-product-tag="10% Vitamin C" data-product-img="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=300&auto=format&fit=crop"><div class="p-img"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=300&auto=format&fit=crop" alt="Serum"></div><div class="p-info"><span class="p-tag">10% Vitamin C</span><h3>Brightening Serum</h3><p>Untuk bekas jerawat hitam dan kulit kusam. Hasil terlihat dalam 2 minggu.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 149K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Glow%20Lab!%20Mau%20order%20Brightening%20Serum" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Beli</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card" data-product-name="Gentle Exfoliating Toner" data-product-price="" data-product-desc="Angkat komedo dan minyak berlebih tanpa bikin kulit kering." data-product-tag="2% BHA" data-product-img="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=300&auto=format&fit=crop"><div class="p-img"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=300&auto=format&fit=crop" alt="Toner"></div><div class="p-info"><span class="p-tag">2% BHA</span><h3>Gentle Exfoliating Toner</h3><p>Angkat komedo dan minyak berlebih tanpa bikin kulit kering.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 99K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Glow%20Lab!%20Mau%20order%20Gentle%20Toner" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Beli</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card" data-product-name="Barrier Repair Gel" data-product-price="" data-product-desc="Pelembap ringan yang ngelembapin seharian, cocok untuk oily skin." data-product-tag="5 Ceramides" data-product-img="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=300&auto=format&fit=crop"><div class="p-img"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=300&auto=format&fit=crop" alt="Moisturizer"></div><div class="p-info"><span class="p-tag">5 Ceramides</span><h3>Barrier Repair Gel</h3><p>Pelembap ringan yang ngelembapin seharian, cocok untuk oily skin.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 129K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Glow%20Lab!%20Mau%20order%20Barrier%20Gel" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Beli</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card" data-product-name="Amino Acid Cleanser" data-product-price="" data-product-desc="Pembersih lembut yang gak bikin kulit keset setelah cuci muka." data-product-tag="Low pH" data-product-img="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=300&auto=format&fit=crop"><div class="p-img"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=300&auto=format&fit=crop" alt="Cleanser"></div><div class="p-info"><span class="p-tag">Low pH</span><h3>Amino Acid Cleanser</h3><p>Pembersih lembut yang gak bikin kulit keset setelah cuci muka.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 85K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Glow%20Lab!%20Mau%20order%20Cleanser" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Beli</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card" data-product-name="Daily Sunscreen" data-product-price="" data-product-desc="Ringan, gak whitecast, dan gak bikin makeup longsor." data-product-tag="SPF 50 PA++++" data-product-img="https://images.unsplash.com/photo-1526758097130-bab247274f58?q=80&w=300&auto=format&fit=crop"><div class="p-img"><img src="https://images.unsplash.com/photo-1526758097130-bab247274f58?q=80&w=300&auto=format&fit=crop" alt="Sunscreen"></div><div class="p-info"><span class="p-tag">SPF 50 PA++++</span><h3>Daily Sunscreen</h3><p>Ringan, gak whitecast, dan gak bikin makeup longsor.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 119K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Glow%20Lab!%20Mau%20order%20Sunscreen" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Beli</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="p-img" style="background: linear-gradient(135deg, #E8F0EB 0%, #D4E5DB 100%);">
+                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?q=80&w=300&auto=format&fit=crop" alt="Kit">
+                </div>
+                <div class="p-info">
+                    <span class="p-tag" style="background: var(--text); color: white;">BUNDLE</span>
+                    <h3>Acne Care Set</h3>
+                    <p>Paket lengkap: Cleanser + Toner + Serum + Moist. Hemat 100rb!</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 349K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Glow%20Lab!%20Mau%20order%20Acne%20Set" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Beli</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testi" id="testi">
+        <div class="section-header">
+            <h2>Apa kata mereka?</h2>
+            <p>Real reviews dari real customers. Gak ada yang dibayar bilang bagus.</p>
+        </div>
+        
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Aku udah nyoba berbagai skincare mahal tapi gak cocok. Glow Lab ini affordable tapi works! Bekas jerawatku memudar dalam sebulan."</p>
+                <div class="testi-author">
+                    <div>
+                        <strong>Sarah Amanda</strong>
+                        <span>Jakarta</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testi-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Moisturizernya juara! Gel texture jadi gak greasy, cocok untuk kulit oily acne-prone kaya aku. Harganya juga student-friendly."</p>
+                <div class="testi-author">
+                    <div>
+                        <strong>Nadia Putri</strong>
+                        <span>Bandung</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testi-card">
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p>"Customer servicenya helpful banget. Aku konsultasi dulu soal jerawat hormonal, dikasih rekomendasi yang pas. Recommended!"</p>
+                <div class="testi-author">
+                    <div>
+                        <strong>Dinda Kirana</strong>
+                        <span>Surabaya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Story -->
+    <section id="brand_story" data-section="brand_story" data-editable-section-visible="brand_story.visible" style="padding: 80px 10%; background: var(--warm);">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div data-editable="brand_story.image" style="border-radius: 16px; height: 300px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=900&auto=format&fit=crop" alt="Meja formulasi Glow Lab" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div>
+                <span data-editable="brand_story.subtitle" style="color: var(--sage); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Cerita Kami</span>
+                <h2 data-editable="brand_story.title" style="font-size: 36px; margin: 20px 0; color: var(--text);">Glow Lab</h2>
+                <p data-editable="brand_story.content" style="font-size: 16px; line-height: 1.8; color: var(--text-soft);">Berawal dari frustrasi dengan skincare yang overpromise, kami membuat formula yang fokus ke hasil nyata. Setiap produk diuji secara ketat dan diformulasikan dengan bahan berkualitas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Gallery -->
+    <section id="brand_gallery" data-section="brand_gallery" data-editable-section-visible="brand_gallery.visible" style="padding: 80px 10%; background: var(--white);">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 data-editable="brand_gallery.title" style="font-size: 32px; color: var(--text);">Galeri</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;">
+            <div data-editable="brand_gallery.image_1" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=600&auto=format&fit=crop" alt="Produk Glow Lab" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div data-editable="brand_gallery.image_2" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1598452963314-b09f397a5c48?q=80&w=600&auto=format&fit=crop" alt="Tekstur skincare" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div data-editable="brand_gallery.image_3" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600&auto=format&fit=crop" alt="Rangkaian produk" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div data-editable="brand_gallery.image_4" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=600&auto=format&fit=crop" alt="Skincare essentials" style="width:100%;height:100%;object-fit:cover;"></div>
+        </div>
+    </section>
+
+    <!-- SECTION: Location -->
+    <section id="location" data-section="location" data-editable-section-visible="location.visible" style="padding: 80px 10%; background: var(--sage-light);">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <span data-editable="location.subtitle" style="color: var(--sage); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Kunjungi Kami</span>
+                <h2 data-editable="location.title" style="font-size: 32px; margin: 20px 0; color: var(--text);">Offline Store</h2>
+                <p data-editable="location.address" style="font-size: 16px; line-height: 1.8; color: var(--text-soft); margin-bottom: 20px;">
+                    Jl. Skincare No. 45<br>
+                    Jakarta Selatan, 12190<br>
+                    Indonesia
+                </p>
+                <p data-editable="location.hours" style="font-size: 14px; color: var(--text-soft);">
+                    <strong>Jam Buka:</strong><br>
+                    Senin - Sabtu: 10.00 - 20.00<br>
+                    Minggu: 11.00 - 18.00
+                </p>
+                <div style="display:grid;gap:10px;margin-top:20px;">
+                    <div data-editable="location.outlet1_name" style="padding:14px;border:1px solid rgba(0,0,0,0.08);border-radius:12px;background:white;">
+                        <strong>Studio Jakarta Selatan</strong><br>
+                        <span data-editable="location.outlet1_address" style="color:var(--text-soft);font-size:14px;">Jl. Skincare No. 45</span>
+                    </div>
+                    <div data-editable="location.outlet2_name" style="padding:14px;border:1px solid rgba(0,0,0,0.08);border-radius:12px;background:white;">
+                        <strong>Pickup Bandung</strong><br>
+                        <span data-editable="location.outlet2_address" style="color:var(--text-soft);font-size:14px;">Area Dago</span>
+                    </div>
+                </div>
+            </div>
+            <div data-editable="location.map" style="background: var(--white); border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center; color: var(--text-soft);">
+                [Google Maps]
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ -->
+    <section id="faq" data-section="faq" data-editable-section-visible="faq.visible" style="padding: 80px 10%; background: var(--white);">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 data-editable="faq.title" style="font-size: 32px; color: var(--text);">Pertanyaan Umum</h2>
+            </div>
+            <div>
+                <details data-editable="faq.q1" style="border: 1px solid var(--sage-light); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <summary style="font-weight: 600; color: var(--text); cursor: pointer;">Apakah cocok untuk kulit sensitif?</summary>
+                    <p data-editable="faq.a1" style="margin-top: 15px; color: var(--text-soft); line-height: 1.6;">Semua produk kami hypoallergenic dan tidak mengandung fragrance yang dapat mengiritasi kulit sensitif.</p>
+                </details>
+                <details data-editable="faq.q2" style="border: 1px solid var(--sage-light); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <summary style="font-weight: 600; color: var(--text); cursor: pointer;">Berapa lama until hasil terlihat?</summary>
+                    <p data-editable="faq.a2" style="margin-top: 15px; color: var(--text-soft); line-height: 1.6;">Hasil biasanya terlihat dalam 2-4 minggu penggunaan rutin. Konsistensi adalah kunci!</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo"><i class="fa-solid fa-leaf"></i> Glow Lab</div>
+        <p>Skincare lokal yang fokus ke formula yang works, tanpa janji palsu. Made with love in Indonesia.</p>
+        <div class="footer-links">
+            <a href="#">Tentang Kami</a>
+            <a href="#">Cara Order</a>
+            <a href="#">FAQ</a>
+            <a href="#">Instagram</a>
+        </div>
+        <div class="copyright">
+            © 2026 Glow Lab Indonesia. Didukung oleh webtokoku.
+        </div>
+    </footer>
+    <script>
+      const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 700'%3E%3Crect width='900' height='700' fill='%23F5F1EB'/%3E%3Cpath d='M140 120h620v460H140z' fill='%23FFFFFF' stroke='%238FA395' stroke-width='4'/%3E%3Ctext x='450' y='350' font-family='Arial' font-size='42' fill='%233D3D3D' text-anchor='middle'%3EGlow Lab%3C/text%3E%3C/svg%3E";
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.src = fallbackImage;
+        }, { once: true });
+      });
+    </script>
+<script src="/demo/demo-engine.js"></script></body>
+</html>

@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butik Hana - Keanggunan Abadi</title>
+    <!-- Font Bazzlong style -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark: #0A0A0A;
+            --gold: #C5A059;
+            --light: #F5F5F5;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background-color: var(--dark); color: var(--light); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navbar */
+        nav { position: fixed; top: 0; width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: 0.4s; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); }
+        .logo { font-family: var(--font-heading); font-size: 24px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-icons a { margin-left: 20px; font-size: 18px; transition: color 0.3s; }
+        .nav-icons a:hover { color: var(--gold); }
+
+        /* Video Hero Fullscreen */
+        .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.6; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3), rgba(10,10,10,0.9)); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; padding: 0 5%; }
+        .subtitle { font-size: 12px; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 20px; display: block; color: var(--gold); }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(3rem, 7vw, 5rem); letter-spacing: 5px; font-weight: 500; margin-bottom: 30px; line-height: 1.1; }
+        .hero p { max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem; font-weight: 300; line-height: 1.8; color: #CCCCCC; }
+        .btn-gold { display: inline-block; border: 1px solid var(--gold); color: var(--gold); padding: 15px 40px; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; transition: 0.4s; background: transparent; cursor: pointer; }
+        .btn-gold:hover { background: var(--gold); color: var(--dark); }
+
+        /* Collections */
+        .collections { padding: 120px 5%; background: var(--dark); text-align: center; }
+        .sec-title { font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 3px; font-weight: 400; margin-bottom: 60px; }
+        
+        .c-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .c-card { text-align: left; }
+        .c-img-wrap { overflow: hidden; margin-bottom: 25px; aspect-ratio: 3/4; position: relative; }
+        .c-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 1s ease; filter: brightness(0.8); }
+        .c-card:hover .c-img-wrap img { transform: scale(1.05); filter: brightness(1); }
+        .c-tag { font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .c-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 15px; font-weight: 400; letter-spacing: 1px; }
+        .c-price { font-size: 1rem; color: #AAAAAA; margin-bottom: 20px; font-weight: 300; }
+        .btn-link { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: white; border-bottom: 1px solid var(--gold); padding-bottom: 5px; transition: 0.3s; }
+        .btn-link:hover { color: var(--gold); }
+
+        /* 360 Explore / Split Section */
+        .split-sec { display: flex; min-height: 80vh; background: #111; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .split-text { flex: 1; padding: 10%; display: flex; flex-direction: column; justify-content: center; }
+        .split-text h2 { font-family: var(--font-heading); font-size: 3rem; font-weight: 400; margin-bottom: 20px; letter-spacing: 2px; }
+        .split-text p { font-size: 1rem; color: #AAAAAA; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+        .split-img { flex: 1; position: relative; overflow: hidden; }
+        .split-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(50%); transition: 1s; }
+        .split-img:hover img { filter: grayscale(0%); transform: scale(1.02); }
+
+        /* Masterpiece Video Sec */
+        .masterpiece { padding: 120px 5%; text-align: center; }
+        .video-box { position: relative; max-width: 1000px; margin: 0 auto 50px; aspect-ratio: 16/9; overflow: hidden; cursor: pointer; }
+        .video-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
+        .video-box:hover img { opacity: 1; transform: scale(1.02); }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border: 1px solid white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); transition: 0.3s; }
+        .video-box:hover .play-btn { background: var(--gold); border-color: var(--gold); transform: translate(-50%, -50%) scale(1.1); }
+        .m-title { font-family: var(--font-heading); font-size: 2.5rem; letter-spacing: 2px; margin-bottom: 20px; font-weight: 400; }
+        .m-desc { max-width: 700px; margin: 0 auto; color: #AAAAAA; font-weight: 300; line-height: 1.8; }
+
+        /* Footer */
+        footer { padding: 80px 5% 40px; border-top: 1px solid rgba(255,255,255,0.1); background: var(--dark); }
+        .f-top { display: flex; justify-content: space-between; margin-bottom: 60px; }
+        .f-col h4 { font-family: var(--font-heading); font-size: 1.2rem; letter-spacing: 2px; font-weight: 400; margin-bottom: 25px; color: var(--gold); }
+        .f-col ul { list-style: none; }
+        .f-col ul li { margin-bottom: 15px; }
+        .f-col a { font-size: 13px; color: #AAAAAA; transition: 0.3s; }
+        .f-col a:hover { color: white; }
+        .f-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 12px; color: #666; letter-spacing: 1px; }
+
+        @media (max-width: 1024px) {
+            .c-grid { grid-template-columns: repeat(2, 1fr); }
+            .split-sec { flex-direction: column; }
+            .split-img { height: 400px; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .c-grid { grid-template-columns: 1fr; }
+            .f-top { flex-direction: column; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">BUTIK HANA</div>
+        <div class="nav-links">
+            <a href="#">Koleksi</a>
+            <a href="#">Warisan</a>
+            <a href="#">Butik Kami</a>
+        </div>
+        <div class="nav-icons">
+            <a href="https://wa.me/6281234567890"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img class="hero-video" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop" alt="Video Fashion">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="subtitle">Keanggunan Abadi di Setiap Jahitan</span>
+            <h1>BUTIK HANA</h1>
+            <p>Pilihan pakaian dan aksesori yang mudah dipakai untuk acara harian maupun momen khusus.</p>
+            <a href="#collections" class="btn-gold">Lihat koleksi</a>
+        </div>
+    </section>
+
+    <section class="collections" id="collections">
+        <h2 class="sec-title">Katalog</h2>
+        <div class="c-grid">
+            <div class="c-card">
+                <div class="c-img-wrap"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=600&auto=format&fit=crop" alt="Dress"></div>
+                <span class="c-tag">Koleksi Elegansi</span>
+                <h3 class="c-title">Kania Earth Dress</h3>
+                <div class="c-price">Rp 850.000</div>
+                <a href="https://wa.me/6281234567890" class="btn-link">Pesan via WhatsApp</a>
+            </div>
+            <div class="c-card">
+                <div class="c-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600&auto=format&fit=crop" alt="Silk"></div>
+                <span class="c-tag">Kemilau Surgawi</span>
+                <h3 class="c-title">Zara Royal Silk</h3>
+                <div class="c-price">Rp 450.000</div>
+                <a href="https://wa.me/6281234567890" class="btn-link">Pesan via WhatsApp</a>
+            </div>
+            <div class="c-card">
+                <div class="c-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600&auto=format&fit=crop" alt="Couture"></div>
+                <span class="c-tag">Koleksi Puncak</span>
+                <h3 class="c-title">Safira Couture</h3>
+                <div class="c-price">Rp 1.250.000</div>
+                <a href="https://wa.me/6281234567890" class="btn-link">Pesan via WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="split-sec">
+        <div class="split-text">
+            <span class="subtitle">Anatomi Keanggunan</span>
+            <h2>Detail produk</h2>
+            <p>Cek bahan, ukuran, dan cara perawatan supaya lebih mudah memilih sebelum order.</p>
+            <a href="#" class="btn-gold" style="width: fit-content;">Tanya via WhatsApp</a>
+        </div>
+        <div class="split-img">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" alt="Detail bahan">
+        </div>
+    </section>
+
+    <section class="masterpiece">
+        <div class="video-box">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop" alt="Atelier">
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+        <h2 class="m-title">Tentang koleksi</h2>
+        <p class="m-desc">Masuki atelier kami di Jakarta dan temukan gairah, warisan, dan keahlian teliti yang tertuang di setiap karya Butik Hana. Dengarkan langsung dari para pengrajin visioner yang menghidupkan keajaiban tekstil ini.</p>
+    </section>
+
+    <!-- SECTION: Reviews -->
+    <section id="reviews" data-section="reviews" data-editable-section-visible="reviews.visible" style="padding: 80px 10%; background: #fafafa;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span data-editable="reviews.subtitle" style="color: #999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Testimoni</span>
+            <h2 data-editable="reviews.title" style="font-family: 'Playfair Display', serif; font-size: 36px; margin-top: 10px; color: #1a1a1a;">Apa Kata Mereka</h2>
+        </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+            <p data-editable="reviews.content" style="font-size: 18px; line-height: 1.8; color: #555; font-style: italic;">"Kualitas gaunnya luar biasa! Jahitan rapi dan bahannya nyaman dipakai. Bakal repeat order!"</p>
+            <p data-editable="reviews.author" style="margin-top: 20px; font-weight: 600; color: #1a1a1a;">— Sarah, Jakarta</p>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Gallery -->
+    <section id="brand_gallery" data-section="brand_gallery" data-editable-section-visible="brand_gallery.visible" style="padding: 80px 10%; background: white;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 data-editable="brand_gallery.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a1a;">Galeri Kami</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;">
+            <div data-editable="brand_gallery.image_1" style="aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">Gambar 1</div>
+            <div data-editable="brand_gallery.image_2" style="aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">Gambar 2</div>
+            <div data-editable="brand_gallery.image_3" style="aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">Gambar 3</div>
+            <div data-editable="brand_gallery.image_4" style="aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">Gambar 4</div>
+        </div>
+    </section>
+
+    <!-- SECTION: Location -->
+    <section id="location" data-section="location" data-editable-section-visible="location.visible" style="padding: 80px 10%; background: #fafafa;">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <span data-editable="location.subtitle" style="color: #d4af37; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Kunjungi Kami</span>
+                <h2 data-editable="location.title" style="font-family: 'Playfair Display', serif; font-size: 36px; margin: 20px 0; color: #1a1a1a;">Butik Kami</h2>
+                <p data-editable="location.address" style="font-size: 16px; line-height: 1.8; color: #555; margin-bottom: 20px;">
+                    Jl. Fashion No. 123<br>
+                    Jakarta Selatan, 12190<br>
+                    Indonesia
+                </p>
+                <p data-editable="location.hours" style="font-size: 14px; color: #777;">
+                    <strong>Jam Operasional:</strong><br>
+                    Senin - Sabtu: 10.00 - 19.00<br>
+                    Minggu: 12.00 - 17.00
+                </p>
+            </div>
+            <div data-editable="location.map" style="background: #e0e0e0; border-radius: 8px; height: 300px; display: flex; align-items: center; justify-content: center; color: #999;">
+                [Google Maps Embed]
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ -->
+    <section id="faq" data-section="faq" data-editable-section-visible="faq.visible" style="padding: 80px 10%; background: white;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 data-editable="faq.title" style="font-family: 'Playfair Display', serif; font-size: 36px; color: #1a1a1a;">Pertanyaan Umum</h2>
+            </div>
+            <div style="space-y: 20px;">
+                <details data-editable="faq.q1" style="border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                    <summary style="font-weight: 600; color: #1a1a1a; cursor: pointer;">Berapa lama waktu pembuatan gaun custom?</summary>
+                    <p data-editable="faq.a1" style="margin-top: 15px; color: #555; line-height: 1.6;">Waktu pembuatan biasanya 7-14 hari kerja tergantung kompleksitas desain.</p>
+                </details>
+                <details data-editable="faq.q2" style="border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                    <summary style="font-weight: 600; color: #1a1a1a; cursor: pointer;">Apakah bisa request desain sendiri?</summary>
+                    <p data-editable="faq.a2" style="margin-top: 15px; color: #555; line-height: 1.6;">Tentu! Kami menerima custom design. Silakan konsultasikan dengan tim kami.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="f-top">
+            <div class="f-col" style="flex: 2; padding-right: 50px;">
+                <div class="logo" style="margin-bottom: 20px;">BUTIK HANA</div>
+                <p style="color: #666; font-size: 13px; line-height: 1.8; font-weight: 300;">Katalog fashion yang bisa dipesan langsung lewat WhatsApp. Berbasis di Jakarta.</p>
+            </div>
+            <div class="f-col" style="flex: 1;">
+                <h4>Koleksi</h4>
+                <ul>
+                    <li><a href="#">The Elegance</a></li>
+                    <li><a href="#">Bridal Tradisi</a></li>
+                    <li><a href="#">Ready to Wear</a></li>
+                    <li><a href="#">Aksesoris</a></li>
+                </ul>
+            </div>
+            <div class="f-col" style="flex: 1;">
+                <h4>Layanan Pelanggan</h4>
+                <ul>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Jahit Custom</a></li>
+                    <li><a href="#">Cara Perawatan</a></li>
+                    <li><a href="#">Cari Butik</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="f-bottom">
+            © 2026 Butik Hana. Hak Cipta Dilindungi. Didukung oleh webtokoku.
+        </div>
+    </footer>
+    <script>
+      const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 700'%3E%3Crect width='900' height='700' fill='%23161616'/%3E%3Cpath d='M120 120h660v460H120z' fill='%23202020' stroke='%23C5A059' stroke-width='3'/%3E%3Ctext x='450' y='350' font-family='Arial' font-size='42' fill='%23C5A059' text-anchor='middle'%3EBUTIK HANA%3C/text%3E%3C/svg%3E";
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.src = fallbackImage;
+        }, { once: true });
+      });
+    </script>
+<script src="/demo/demo-engine.js"></script></body>
+</html>

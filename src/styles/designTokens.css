@@ -1,0 +1,64 @@
+/* src/styles/designTokens.css */
+:root {
+  /* ----------- Global Design Tokens ----------- */
+  /* Colors – generic, can be overridden per template */
+  --wt-color-primary: #0F172A; /* dark slate */
+  --wt-color-primary-light: #F1F5F9;
+  --wt-color-primary-dark: #0C0F14;
+  --wt-color-success: #10B981;
+  --wt-color-danger: #EF4444;
+  --wt-color-warning: #F59E0B;
+
+  /* Spacing */
+  --wt-space-4: 0.25rem; /* 4px */
+  --wt-space-8: 0.5rem;  /* 8px */
+  --wt-space-16: 1rem;   /* 16px */
+  --wt-space-24: 1.5rem; /* 24px */
+  --wt-space-32: 2rem;   /* 32px */
+
+  /* Radius */
+  --wt-radius-sm: 8px;
+  --wt-radius-md: 12px;
+  --wt-radius-lg: 16px;
+
+  /* Shadow */
+  --wt-shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --wt-shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+  --wt-shadow-lg: 0 12px 32px rgba(0,0,0,0.2);
+
+  /* Transition easing */
+  --wt-ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+  --wt-ease-cubic: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Template‑specific overrides – keep colours distinct but low‑risk */
+/* Butik – dark luxury */
+[data-template="butik"] {
+  --wt-color-primary: #1E1B4B;   /* deep violet */
+  --wt-color-primary-light: #F4F3FF;
+  --wt-color-primary-dark: #151236;
+}
+/* Dapur – warm beige */
+[data-template="dapur"] {
+  --wt-color-primary: #A16207;   /* amber 800 */
+  --wt-color-primary-light: #FDE68A;
+  --wt-color-primary-dark: #854D0E;
+}
+/* Glow – clean beauty */
+[data-template="glow"] {
+  --wt-color-primary: #2563EB;   /* blue 600 */
+  --wt-color-primary-light: #BFDBFE;
+  --wt-color-primary-dark: #1E40AF;
+}
+/* Herba – natural green */
+[data-template="herba"] {
+  --wt-color-primary: #166534;   /* green 800 */
+  --wt-color-primary-light: #BBF7D0;
+  --wt-color-primary-dark: #14532D;
+}
+/* Luxe – dark violet premium */
+[data-template="luxe"] {
+  --wt-color-primary: #4C1D95;   /* violet 800 */
+  --wt-color-primary-light: #DDD6FE;
+  --wt-color-primary-dark: #3B0F6F;
+}

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazzgrow | Apartemen Mewah</title>
+    <meta name="description" content="Puncak kemewahan di jantung kota. Rasakan pengalaman hidup tak tertandingi di Bazzgrow dengan desain elegan dan fasilitas kelas dunia.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="logo">BAZZGROW</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#facilities">Fasilitas</a></li>
+            <li><a href="#offers">Promo</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#testimonials">Testimoni</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <a href="#contact" class="btn-primary nav-btn desktop-only">Jadwalkan Tur</a>
+    </nav>
+
+    <header id="home" class="hero">
+        <!-- Animated Sky Background -->
+        <div class="hero-sky-bg"></div>
+        
+        <!-- Apartment Object -->
+        <div class="hero-apartment">
+            <!-- Asumsikan gambar apartemen tanpa background (PNG) dinamai apartment.png -->
+            <img src="assets/apartment.png" alt="Bazzgrow Apartment">
+        </div>
+
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <h1>BAZZGROW</h1>
+            <p class="hero-subtitle">Apartemen elit di Palembang.</p>
+            <a href="#about" class="btn-primary">Jelajahi Lebih Lanjut</a>
+        </div>
+    </header>
+
+    <section id="facilities" class="facilities">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Eksklusivitas</span>
+                <h2 class="section-title">Fasilitas Premium</h2>
+            </div>
+            
+            <div class="carousel-container reveal delay-1">
+                
+                <!-- Slide 1 -->
+                <div class="carousel-slide active fade">
+                    <div class="slide-content">
+                        <div class="slide-number">01</div>
+                        <h3>Kolam Renang Infinity</h3>
+                        <p>Apartemen ini dilengkapi dengan kolam renang infinity yang menawarkan pengalaman berenang tak tertandingi sambil menikmati pemandangan spektakuler cahaya kota di malam hari. Area bersantai yang elegan di tepi kolam memberikan kenyamanan maksimal bagi Anda.</p>
+                    </div>
+                    <div class="slide-image glass-panel">
+                        <img src="assets/pool.png" alt="Kolam Renang Infinity">
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide fade">
+                    <div class="slide-content">
+                        <div class="slide-number">02</div>
+                        <h3>Sky Lounge Eksekutif</h3>
+                        <p>Ruang bersantai di puncak gedung dengan desain interior yang elegan dan pencahayaan hangat. Sempurna untuk bersantai sambil menikmati koktail atau mengadakan pertemuan bisnis eksklusif dengan latar belakang panorama kota yang menakjubkan.</p>
+                    </div>
+                    <div class="slide-image glass-panel">
+                        <img src="assets/lounge.png" alt="Sky Lounge Eksekutif">
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide fade">
+                    <div class="slide-content">
+                        <div class="slide-number">03</div>
+                        <h3>Pusat Kebugaran Pribadi</h3>
+                        <p>Pusat kebugaran berteknologi tinggi dengan jendela dari lantai hingga langit-langit. Dilengkapi dengan peralatan mutakhir berdesain ramping, memastikan pengalaman berolahraga Anda seindah dan seefisien mungkin.</p>
+                    </div>
+                    <div class="slide-image glass-panel">
+                        <img src="assets/fitness.png" alt="Pusat Kebugaran Pribadi">
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-slide fade">
+                    <div class="slide-content">
+                        <div class="slide-number">04</div>
+                        <h3>Spa & Wellness Center</h3>
+                        <p>Temukan ketenangan absolut di spa mewah kami. Dengan nuansa kayu yang hangat dan pencahayaan temaram yang menenangkan, fasilitas ini dirancang untuk memanjakan tubuh dan pikiran Anda dengan layanan premium.</p>
+                    </div>
+                    <div class="slide-image glass-panel">
+                        <img src="assets/spa.png" alt="Spa & Wellness Center">
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="carousel-slide fade">
+                    <div class="slide-content">
+                        <div class="slide-number">05</div>
+                        <h3>Taman Vertikal Rimbun</h3>
+                        <p>Oase hijau di tengah hiruk-pikuk kota. Teras dengan taman vertikal yang asri dilengkapi dengan perabotan luar ruangan modern, menawarkan suasana damai yang sempurna terutama di saat matahari terbenam.</p>
+                    </div>
+                    <div class="slide-image glass-panel">
+                        <img src="assets/garden.png" alt="Taman Vertikal Rimbun">
+                    </div>
+                </div>
+
+                <!-- Slide 6 -->
+                <div class="carousel-slide fade">
+                    <div class="slide-content">
+                        <div class="slide-number">06</div>
+                        <h3>Lobi Utama Megah</h3>
+                        <p>Sambutan kemewahan sesaat setelah Anda melangkah masuk. Lobi dengan langit-langit tinggi yang megah, lantai marmer berkualitas tinggi, dan lampu gantung kristal modern, menciptakan kesan pertama yang tak terlupakan.</p>
+                    </div>
+                    <div class="slide-image glass-panel">
+                        <img src="assets/hero.png" alt="Lobi Utama Megah">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+                    <div class="dots-container">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                        <span class="dot" onclick="currentSlide(5)"></span>
+                        <span class="dot" onclick="currentSlide(6)"></span>
+                    </div>
+                    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="offers" class="offers">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="subtitle">Penawaran Eksklusif</span>
+                <h2 class="section-title">Peluang Terbatas</h2>
+            </div>
+            
+            <div class="offers-magazine">
+                <div class="offer-main reveal delay-1">
+                    <div class="offer-image-wrapper">
+                        <img src="assets/apartment.png" alt="Promo Utama" class="parallax-img">
+                    </div>
+                    <div class="offer-content">
+                        <h3>Hak Istimewa Pre-Launch</h3>
+                        <p>Dapatkan potongan harga eksklusif hingga 15% untuk pembelian unit Penthouse sebelum peluncuran publik. Penawaran ini hanya berlaku untuk 10 pembeli pertama dengan layanan kustomisasi interior gratis dari desainer ternama.</p>
+                        <a href="#contact" class="link-elegant">Klaim Penawaran</a>
+                    </div>
+                </div>
+                
+                <div class="offer-side">
+                    <div class="offer-card-elegant reveal delay-2">
+                        <div class="offer-number">01</div>
+                        <h4>Bebas Biaya Perawatan</h4>
+                        <p>Nikmati pembebasan biaya pengelolaan gedung (maintenance fee) selama 2 tahun pertama untuk setiap pembelian unit 2 Bedroom.</p>
+                    </div>
+                    
+                    <div class="offer-card-elegant reveal delay-3">
+                        <div class="offer-number">02</div>
+                        <h4>Fleksibilitas Pembayaran</h4>
+                        <p>Skema cicilan bertahap ke developer hingga 60 kali tanpa bunga, memberikan Anda kemudahan dalam mewujudkan impian memiliki hunian premium.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <span class="subtitle">Filosofi Desain</span>
+                    <h2>Definisi Baru Sebuah Kehidupan Modern</h2>
+                    <p>Bazzgrow bukan sekadar tempat tinggal; ini adalah sebuah mahakarya arsitektur yang dirancang untuk mereka yang menghargai keindahan dan kenyamanan. Setiap unit dirancang dengan teliti memadukan estetika kontemporer dengan fungsionalitas cerdas.</p>
+                    <p>Dari pencahayaan alami yang melimpah hingga material impor berkualitas tinggi, kami memastikan setiap inci ruang hidup Anda memancarkan aura kemewahan tanpa kompromi.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-card glass-panel reveal delay-1">
+                        <div class="icon">✦</div>
+                        <h4>Privasi Tingkat Tinggi</h4>
+                        <p>Lift pribadi dan akses eksklusif yang memprioritaskan ketenangan Anda.</p>
+                    </div>
+                    <div class="feature-card glass-panel reveal delay-2">
+                        <div class="icon">✦</div>
+                        <h4>Material Premium</h4>
+                        <p>Marmer Italia, kayu solid, dan perlengkapan dari desainer terkemuka.</p>
+                    </div>
+                    <div class="feature-card glass-panel reveal delay-3">
+                        <div class="icon">✦</div>
+                        <h4>Layanan Concierge 24/7</h4>
+                        <p>Asisten pribadi yang siap melayani setiap kebutuhan gaya hidup Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="testimonials-wrapper reveal">
+                <div class="quote-mark">"</div>
+                
+                <div class="testi-slider">
+                    <div class="testi-slide active">
+                        <p class="testi-text">"Tinggal di Bazzgrow adalah definisi ulang dari kemewahan kontemporer. Perhatian terhadap detail pada arsitektur dan layanan concierge yang luar biasa membuat setiap hari terasa seperti liburan di hotel bintang lima."</p>
+                        <div class="testi-author">
+                            <span class="author-name">dr. Alexander Wijaya</span>
+                            <span class="author-title">ahli bedah saraf & penghuni penthouse</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testi-slide">
+                        <p class="testi-text">"Ketenangan yang saya temukan di tengah pusat kota yang sibuk sungguh tak ternilai. Fasilitas spa dan sky lounge menjadi tempat pelarian sempurna saya setelah hari yang panjang di bursa saham."</p>
+                        <div class="testi-author">
+                            <span class="author-name">Sarah Chen</span>
+                            <span class="author-title">direktur eksekutif keuangan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testi-slide">
+                        <p class="testi-text">"Sebagai seorang desainer, saya sangat pemilih soal estetika. Bazzgrow tidak hanya memenuhi, tetapi melampaui ekspektasi saya. Penggunaan material marmer yang sempurna menjadikannya mahakarya yang nyata."</p>
+                        <div class="testi-author">
+                            <span class="author-name">Jonathan Pratama</span>
+                            <span class="author-title">arsitek senior</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testi-progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="testi-controls">
+                    <button class="testi-btn prev-testi" onclick="changeTesti(-1)">Prev</button>
+                    <button class="testi-btn next-testi" onclick="changeTesti(1)">Next</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container reveal">
+            <div class="contact-glass-card">
+                <div class="contact-grid">
+                    <div class="contact-info-panel">
+                        <span class="subtitle">Lokasi Kami</span>
+                        <h2>Mari Bertemu</h2>
+                        <p>Kunjungi galeri pemasaran kami di pusat kota Palembang untuk melihat langsung kemewahan unit Bazzgrow, atau hubungi kami untuk informasi lebih lanjut.</p>
+                        
+                        <div class="info-list">
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <div>
+                                    <h5>Marketing Gallery</h5>
+                                    <p>Jl. Jenderal Sudirman No. 123, Palembang</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <div>
+                                    <h5>Telepon</h5>
+                                    <p>+62 711-345-6789</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p>info@bazzgrow.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="mailto:info@bazzgrow.com" class="btn-primary">Kirim Pesan</a>
+                    </div>
+                    
+                    <div class="contact-map">
+                        <!-- Embed Google Maps untuk Palembang -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127504.42250284429!2d104.6591322!3d-2.9834273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b75e8fc27a3e3%3A0x3039d80b220cb90!2sPalembang%2C%20Palembang%20City%2C%20South%20Sumatra!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">BAZZGROW</div>
+            <p>&copy; 2026 Bazzgrow. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Optional: stop observing once animated
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Carousel Logic
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("carousel-slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (!slides.length) return;
+
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+                slides[i].className = slides[i].className.replace(" active", "");
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "flex";  
+            // Trigger reflow to restart animation
+            void slides[slideIndex-1].offsetWidth; 
+            slides[slideIndex-1].className += " active";
+            dots[slideIndex-1].className += " active";
+        }
+        // Testimonial Slider Logic
+        let currentTesti = 0;
+        const testiSlides = document.querySelectorAll('.testi-slide');
+        const progressBar = document.querySelector('.progress-bar');
+        
+        function updateTestiSlider() {
+            testiSlides.forEach((slide, index) => {
+                if (index === currentTesti) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            // Update progress bar
+            const progress = ((currentTesti + 1) / testiSlides.length) * 100;
+            if(progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+        }
+        
+        function changeTesti(direction) {
+            currentTesti += direction;
+            if (currentTesti >= testiSlides.length) currentTesti = 0;
+            if (currentTesti < 0) currentTesti = testiSlides.length - 1;
+            updateTestiSlider();
+        }
+
+        // Initialize progress bar
+        updateTestiSlider();
+    </script>
+</body>
+</html>

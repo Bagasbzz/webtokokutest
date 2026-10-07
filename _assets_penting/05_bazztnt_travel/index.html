@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bazz TNT - Discover the world's most beautiful destinations with premium tour and travel experiences.">
+    <title>Bazz TNT - Premium Tour & Travel</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="logo">
+            <i class="fa-solid fa-plane-departure"></i>
+            Bazz<span>TNT</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#promos" class="nav-link">Promos</a></li>
+            <li><a href="#destinations" class="nav-link">Destinations</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="btn-ghost" id="btn-login">Login</button>
+            <button class="btn-primary" id="btn-signup">Sign Up</button>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- ====== HERO ====== -->
+    <header id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content animate-up">
+            <h1>Discover the World<br>With <span>Elegance</span></h1>
+            <p>Experience premium travel tailored specifically for you.<br>Unforgettable journeys begin right here.</p>
+
+            <div class="search-card glass">
+                <div class="search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <label>Destination</label>
+                        <input type="text" placeholder="Where to go?" id="search-destination">
+                    </div>
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-field">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <div>
+                        <label>Departure</label>
+                        <input type="date" id="search-date">
+                    </div>
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-field">
+                    <i class="fa-solid fa-user-group"></i>
+                    <div>
+                        <label>Guests</label>
+                        <input type="number" placeholder="2" min="1" id="search-guests">
+                    </div>
+                </div>
+                <button class="btn-search" id="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Search</span>
+                </button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <strong>12K+</strong>
+                    <span>Happy Travelers</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <strong>80+</strong>
+                    <span>Destinations</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <strong>4.9★</strong>
+                    <span>Average Rating</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </header>
+
+    <!-- ====== PROMO BENTO GRID ====== -->
+    <section id="promos" class="section promo-grid-section">
+        <div class="section-header animate-up">
+            <span class="section-tag">Limited Offers</span>
+            <h2>Exclusive <span>Travel Deals</span></h2>
+            <p>Curated packages for the discerning traveler.</p>
+        </div>
+
+        <div class="bento-container">
+            <!-- Featured Promo -->
+            <div class="bento-item featured animate-up" style="--bg: url('assets/promo_bali.png');">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <div class="dest-name">BALI</div>
+                    <div class="promo-info">
+                        <h3>Tropical Paradise Escape</h3>
+                        <p>Complete 5-day package including private villa and cultural tour.</p>
+                    </div>
+                    <div class="price-tags">
+                        <div class="tag glass">
+                            <span class="label">Package</span>
+                            <span class="val">4.2<span>JT</span></span>
+                        </div>
+                        <div class="tag primary">
+                            <span class="label">Full Tour</span>
+                            <span class="val">8.5<span>JT</span></span>
+                        </div>
+                    </div>
+                    <button class="btn-bento">Claim Deal <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Side Stack -->
+            <div class="bento-side">
+                <div class="bento-item animate-up" style="--bg: url('assets/promo_tokyo.png'); --delay: 0.1s;">
+                    <div class="bento-overlay"></div>
+                    <div class="vertical-text">TOKYO</div>
+                    <div class="bento-content">
+                        <h3>Neon City Vibe</h3>
+                        <div class="tag glass mini">
+                            <span class="val">9.8<span>JT</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bento-item animate-up" style="--bg: url('assets/promo_europe.png'); --delay: 0.2s;">
+                    <div class="bento-overlay"></div>
+                    <div class="vertical-text">EUROPE</div>
+                    <div class="bento-content">
+                        <h3>Grand Heritage</h3>
+                        <div class="tag glass mini">
+                            <span class="val">18.5<span>JT</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== DESTINATIONS SLIDER ====== -->
+    <section id="destinations" class="section destinations-section">
+        <div class="section-header animate-up">
+            <span class="section-tag">Explore</span>
+            <h2>Popular <span>Destinations</span></h2>
+            <p>Swipe through our handpicked locations around the globe</p>
+        </div>
+
+        <div class="slider-wrapper animate-up">
+            <div class="slider-track" id="slider-track">
+                <div class="slide-item" style="--bg: url(assets/santorini.png);">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-tag">Europe</div>
+                        <h3>Santorini, Greece</h3>
+                        <p>White-washed buildings, blue domes, and legendary sunsets await you.</p>
+                        <div class="slide-meta">
+                            <span><i class="fa-solid fa-star"></i> 4.9</span>
+                            <span><i class="fa-solid fa-dollar-sign"></i> From $1,199</span>
+                        </div>
+                        <button class="btn-slide">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="slide-item" style="--bg: url(assets/bali.png);">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-tag">Asia</div>
+                        <h3>Bali, Indonesia</h3>
+                        <p>Magical temples, lush rice terraces, and breathtaking sunsets.</p>
+                        <div class="slide-meta">
+                            <span><i class="fa-solid fa-star"></i> 4.9</span>
+                            <span><i class="fa-solid fa-dollar-sign"></i> From $899</span>
+                        </div>
+                        <button class="btn-slide">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="slide-item" style="--bg: url(assets/tokyo.png);">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-tag">Asia</div>
+                        <h3>Tokyo, Japan</h3>
+                        <p>Vibrant neon streets, rich culture, and extraordinary cuisine.</p>
+                        <div class="slide-meta">
+                            <span><i class="fa-solid fa-star"></i> 4.8</span>
+                            <span><i class="fa-solid fa-dollar-sign"></i> From $1,299</span>
+                        </div>
+                        <button class="btn-slide">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="slide-item" style="--bg: url(assets/maldives.png);">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-tag">Ocean</div>
+                        <h3>The Maldives</h3>
+                        <p>Overwater bungalows above crystal-clear turquoise water.</p>
+                        <div class="slide-meta">
+                            <span><i class="fa-solid fa-star"></i> 5.0</span>
+                            <span><i class="fa-solid fa-dollar-sign"></i> From $2,499</span>
+                        </div>
+                        <button class="btn-slide">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="slide-item" style="--bg: url(assets/paris.png);">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-tag">Europe</div>
+                        <h3>Paris, France</h3>
+                        <p>The city of love, lights, and the iconic Eiffel Tower at every turn.</p>
+                        <div class="slide-meta">
+                            <span><i class="fa-solid fa-star"></i> 4.7</span>
+                            <span><i class="fa-solid fa-dollar-sign"></i> From $1,499</span>
+                        </div>
+                        <button class="btn-slide">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="slide-item" style="--bg: url(assets/cappadocia.png);">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="slide-tag">Asia Minor</div>
+                        <h3>Cappadocia, Turkey</h3>
+                        <p>Colorful hot air balloons floating above surreal rock landscapes.</p>
+                        <div class="slide-meta">
+                            <span><i class="fa-solid fa-star"></i> 4.8</span>
+                            <span><i class="fa-solid fa-dollar-sign"></i> From $999</span>
+                        </div>
+                        <button class="btn-slide">Explore Now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn slider-prev" id="slider-prev" aria-label="Previous">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="slider-btn slider-next" id="slider-next" aria-label="Next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
+    </section>
+
+    <!-- ====== SERVICES ====== -->
+    <section id="services" class="section services-section">
+        <div class="services-container">
+            <div class="services-left animate-up">
+                <span class="section-tag">Trust & Safety</span>
+                <h2>Travel With<br><span>Confidence</span></h2>
+                <p>We've moved beyond standard travel. Our commitment to your journey is built on four pillars of absolute trust and seamless experience.</p>
+                
+                <div class="trust-badge-row">
+                    <div class="trust-badge">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>Certified Agency</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fa-solid fa-shield-check"></i>
+                        <span>Secure Payments</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-right">
+                <div class="glass-pill animate-up">
+                    <div class="p-icon"><i class="fa-solid fa-globe"></i></div>
+                    <div class="p-text">
+                        <h3>Global Expertise</h3>
+                        <p>Access to 80+ countries with real local guides.</p>
+                    </div>
+                </div>
+
+                <div class="glass-pill animate-up">
+                    <div class="p-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="p-text">
+                        <h3>Safe Journey</h3>
+                        <p>Full insurance coverage for your peace of mind.</p>
+                    </div>
+                </div>
+
+                <div class="glass-pill animate-up">
+                    <div class="p-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="p-text">
+                        <h3>Best Value</h3>
+                        <p>Luxury travel experience at competitive prices.</p>
+                    </div>
+                </div>
+
+                <div class="glass-pill animate-up">
+                    <div class="p-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div class="p-text">
+                        <h3>24/7 Expert Help</h3>
+                        <p>Always available to support your adventure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT / CTA ====== -->
+    <section id="about" class="section cta-section">
+        <div class="cta-card animate-up">
+            <div class="cta-text">
+                <span class="section-tag light">Ready to go?</span>
+                <h2>Your Dream Trip<br>Starts Here</h2>
+                <p>Join thousands of happy travelers who discovered the world with Bazz TNT. Let's plan your perfect getaway today.</p>
+            </div>
+            <div class="cta-actions">
+                <button class="btn-primary btn-lg" id="btn-book">Book Your Trip</button>
+                <button class="btn-outline-light btn-lg" id="btn-learn">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    Bazz<span>TNT</span>
+                </a>
+                <p>Your premium gateway to the world's most beautiful destinations.</p>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Destinations</h4>
+                <ul>
+                    <li><a href="#">Bali, Indonesia</a></li>
+                    <li><a href="#">Santorini, Greece</a></li>
+                    <li><a href="#">Tokyo, Japan</a></li>
+                    <li><a href="#">The Maldives</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get exclusive deals and travel tips.</p>
+                <form class="newsletter" id="newsletter-form">
+                    <input type="email" placeholder="your@email.com" id="newsletter-email" required>
+                    <button type="submit" aria-label="Subscribe">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bazz TNT. All rights reserved.</p>
+            <p>Made with <i class="fa-solid fa-heart" style="color: #ff5e3a;"></i> for travelers</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

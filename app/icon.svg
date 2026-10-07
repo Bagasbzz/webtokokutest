@@ -1,0 +1,16 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#15803D" />
+    </linearGradient>
+  </defs>
+  <!-- Background elegant rounded box -->
+  <rect x="8" y="8" width="112" height="112" rx="32" fill="url(#greenGrad)" />
+  <!-- Minimalist shop bag handle -->
+  <path d="M48 52V42C48 33.1634 55.1634 26 64 26C72.8366 26 80 33.1634 80 42V52" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" />
+  <!-- Bag base -->
+  <path d="M34 52H94C99.5228 52 104 56.4772 104 62V88C104 96.8366 96.8366 104 88 104H40C31.1634 104 24 96.8366 24 88V62C24 56.4772 28.4772 52 34 52Z" fill="#FFFFFF" />
+  <!-- Stylized letter "W" inside bag matching the green theme -->
+  <path d="M44 68L54 88L64 74L74 88L84 68" stroke="url(#greenGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

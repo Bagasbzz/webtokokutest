@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-labelledby="title desc">
+  <title id="title">Chirisol</title>
+  <desc id="desc">Logo toko risoles Chirisol</desc>
+  <rect width="96" height="96" rx="24" fill="#1f5c46"/>
+  <path d="M24 53c0-17 12-30 28-30 14 0 25 9 29 22H66c-3-5-8-8-14-8-9 0-15 7-15 16s6 16 15 16c6 0 11-3 14-8h15c-4 13-15 22-29 22-16 0-28-13-28-30Z" fill="#fff7e7"/>
+  <path d="M60 20c9 2 15 8 18 17-9-1-16-7-18-17Z" fill="#efb83e"/>
+  <text x="116" y="51" fill="#173d30" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="800">chirisol</text>
+  <text x="118" y="72" fill="#9b4d32" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="2">RISOL UNIK, ISI BIKIN BALIK</text>
+</svg>

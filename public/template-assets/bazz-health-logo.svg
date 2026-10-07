@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Bazz Health logo">
+  <rect width="96" height="96" rx="24" fill="#E8F5E9"/>
+  <path d="M48 16c14 0 25 11 25 25 0 20-25 39-25 39S23 61 23 41c0-14 11-25 25-25Z" fill="#2D5A3D"/>
+  <path d="M32 47h11l5-13 7 26 5-13h9" fill="none" stroke="#FAF9F6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="48" cy="38" r="8" fill="#E07A5F"/>
+</svg>

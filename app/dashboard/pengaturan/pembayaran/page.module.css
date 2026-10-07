@@ -1,0 +1,406 @@
+.container {
+  padding: 32px;
+  max-width: 800px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  color: var(--accent-primary);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.alert.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.alert.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 24px 0;
+}
+
+.sectionTitle svg {
+  color: var(--accent-primary);
+}
+
+.qrisCard {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.qrisPreview {
+  flex-shrink: 0;
+}
+
+.qrisImage {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background: white;
+  padding: 12px;
+}
+
+.qrisInfo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.qrisStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--accent-secondary);
+  margin: 0 0 12px 0;
+}
+
+.checkIcon {
+  color: var(--accent-secondary);
+}
+
+.qrisDesc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.btnDelete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnDelete:hover {
+  background: #fecaca;
+}
+
+.btnDelete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-tertiary);
+}
+
+.emptyIcon {
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+}
+
+.emptyState p {
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: var(--text-secondary);
+}
+
+.emptyState span {
+  font-size: 0.875rem;
+}
+
+.uploadArea {
+  margin-bottom: 24px;
+}
+
+.fileInput {
+  display: block;
+  cursor: pointer;
+}
+
+.fileInput input {
+  display: none;
+}
+
+.uploadPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  border: 2px dashed var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-hover);
+  transition: all 0.2s;
+}
+
+.fileInput:hover .uploadPlaceholder {
+  border-color: var(--accent-primary);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.uploadIcon {
+  color: var(--text-tertiary);
+}
+
+.uploadPlaceholder span {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.uploadPlaceholder small {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.previewImage {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.fileName {
+  font-weight: 500;
+  color: var(--accent-secondary);
+}
+
+.btnClear {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #dc2626;
+  color: #dc2626;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnClear:hover {
+  background: #fee2e2;
+}
+
+.btnSave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnSave:hover:not(:disabled) {
+  background: var(--accent-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btnSave:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.methodGrid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.methodGrid span {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.methodGrid input,
+.methodGrid textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.methodGrid input:focus,
+.methodGrid textarea:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.08);
+}
+
+.fullSpan {
+  grid-column: 1 / -1;
+}
+
+.methodActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.btnSaveInline,
+.btnDeleteInline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btnSaveInline {
+  border: 0;
+  background: var(--accent-primary);
+  color: white;
+}
+
+.btnSaveInline:hover:not(:disabled) {
+  background: var(--accent-primary-hover);
+}
+
+.btnDeleteInline {
+  border: 1px solid #fecaca;
+  background: #fff;
+  color: #dc2626;
+}
+
+.btnDeleteInline:hover:not(:disabled) {
+  background: #fee2e2;
+}
+
+.btnSaveInline:disabled,
+.btnDeleteInline:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.infoSection {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.infoSection h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.infoList {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.infoList li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 20px;
+  }
+
+  .methodGrid {
+    grid-template-columns: 1fr;
+  }
+}

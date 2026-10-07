@@ -1,0 +1,830 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazz Health — Katalog Produk Kesehatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --forest: #2D5A3D;
+            --forest-light: #E8F5E9;
+            --coral: #E07A5F;
+            --cream: #FAF9F6;
+            --warm-white: #FDFCFA;
+            --text: #2C3E50;
+            --text-soft: #5D6D7E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--cream); 
+            color: var(--text); 
+            line-height: 1.6;
+        }
+        
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        nav { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            padding: 16px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(253,252,250,0.98); 
+            backdrop-filter: blur(10px); 
+            z-index: 999; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .logo { 
+            font-size: 24px; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            color: var(--forest);
+        }
+        
+        .logo img { width: 30px; height: 30px; border-radius: 8px; }
+        .logo i { color: var(--coral); font-size: 22px; }
+        
+        .nav-links { display: flex; gap: 36px; }
+        
+        .nav-links a { 
+            font-weight: 500; 
+            color: var(--text-soft); 
+            font-size: 15px; 
+            transition: 0.3s; 
+        }
+        
+        .nav-links a:hover { color: var(--forest); }
+        
+        .btn-nav { 
+            background: var(--forest); 
+            color: white; 
+            padding: 12px 24px; 
+            border-radius: 12px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            transition: 0.3s; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-nav:hover { background: #1e3d2a; transform: translateY(-2px); }
+
+        .hero { 
+            min-height: 95vh; 
+            padding: 100px 5% 60px; 
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--forest-light);
+            color: var(--forest);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .hero-text h1 { 
+            font-size: clamp(2.6rem, 5vw, 4rem); 
+            font-weight: 700; 
+            line-height: 1.1; 
+            margin-bottom: 24px; 
+            color: var(--text);
+        }
+        
+        .hero-text h1 em {
+            color: var(--coral);
+            font-style: normal;
+        }
+        
+        .hero-text > p { 
+            font-size: 1.15rem; 
+            color: var(--text-soft); 
+            margin-bottom: 32px; 
+            max-width: 480px; 
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--forest);
+        }
+        
+        .stat span {
+            font-size: 14px;
+            color: var(--text-soft);
+        }
+        
+        .btn-main {
+            background: var(--coral);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(224,122,95,0.3);
+        }
+        
+        .btn-main:hover {
+            background: #c96a52;
+            transform: translateY(-2px);
+        }
+        
+        .hero-img {
+            position: relative;
+            min-height: 560px;
+        }
+        
+        .hero-img img {
+            border-radius: 0 88px 0 88px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+        }
+        
+        .trust-strip { display: none; }
+        
+        .trust-strip img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: none;
+        }
+        
+        .trust-strip div strong {
+            display: block;
+            font-size: 15px;
+            color: var(--text);
+        }
+        
+        .trust-strip div span {
+            font-size: 13px;
+            color: var(--text-soft);
+        }
+
+        .categories {
+            padding: 60px 5%;
+            background: white;
+        }
+        
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .cat-card {
+            background: var(--cream);
+            padding: 32px 24px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .cat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        
+        .cat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--forest-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+            color: var(--forest);
+        }
+        
+        .cat-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .cat-card p {
+            font-size: 14px;
+            color: var(--text-soft);
+        }
+
+        .products { padding: 100px 5%; }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .p-img {
+            height: 200px;
+            background: var(--forest-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .p-img img {
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .p-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--coral);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .p-info { padding: 24px; }
+        
+        .p-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .p-info > p {
+            font-size: 14px;
+            color: var(--text-soft);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .p-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .p-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--forest);
+        }
+        
+        .p-price small {
+            font-size: 14px;
+            color: var(--text-soft);
+            text-decoration: line-through;
+            margin-left: 6px;
+            font-weight: 500;
+        }
+        
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        
+        .btn-wa:hover {
+            background: #1ebd5a;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            background:
+                linear-gradient(90deg, rgba(45,90,61,0.06) 1px, transparent 1px),
+                linear-gradient(180deg, #fbfaf6 0%, #edf5ed 100%);
+            background-size: 84px 84px, auto;
+        }
+
+        .hero-badge { display: none; }
+
+        .hero-stats {
+            padding: 18px 0;
+            border-top: 1px solid rgba(45,90,61,0.14);
+            border-bottom: 1px solid rgba(45,90,61,0.14);
+        }
+
+        .hero-img { min-height: 540px; }
+
+        .hero-img > img {
+            position: absolute;
+            inset: 0 0 0 12%;
+            width: 88%;
+            height: 100%;
+            border-radius: 0 92px 0 92px;
+            object-fit: cover;
+            box-shadow: 0 34px 90px rgba(45,90,61,0.16);
+        }
+
+        .care-note {
+            position: absolute;
+            left: 0;
+            bottom: 8%;
+            width: 58%;
+            height: 22%;
+            border-left: 2px solid var(--forest);
+            border-bottom: 2px solid var(--forest);
+            opacity: .35;
+        }
+
+        .care-note span,
+        .care-note strong { display: none; }
+
+        .why-us {
+            background: var(--forest);
+            color: white;
+            padding: 100px 5%;
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        .why-text h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+        
+        .why-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        
+        .why-list {
+            list-style: none;
+        }
+        
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .why-list i {
+            width: 28px;
+            height: 28px;
+            background: var(--coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .why-list span {
+            font-size: 16px;
+        }
+        
+        .why-img img {
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+        
+        footer .logo {
+            color: white;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        footer > p {
+            opacity: 0.7;
+            font-size: 15px;
+            max-width: 450px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-links a {
+            opacity: 0.7;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--coral);
+        }
+        
+        .copyright {
+            font-size: 13px;
+            opacity: 0.5;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 50px; }
+            .hero-text > p { margin: 0 auto 32px; }
+            .hero-stats { justify-content: center; }
+            .hero-img { max-width: 450px; margin: 0 auto; }
+            .trust-strip { left: 20px; right: 20px; bottom: 20px; }
+            .cat-grid { grid-template-columns: repeat(2, 1fr); }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; }
+            .why-img { order: -1; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding-top: 120px; }
+            .hero h1 { font-size: 2.3rem; }
+            .hero-stats { gap: 24px; }
+            .stat strong { font-size: 24px; }
+            .cat-grid { grid-template-columns: 1fr; }
+            .product-grid { grid-template-columns: 1fr; }
+            .trust-strip { display: none; }
+            .care-note { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="/template-assets/bazz-health-logo.svg" alt="Bazz Health logo"> Bazz Health</div>
+        <div class="nav-links">
+            <a href="#produk">Produk</a>
+            <a href="#kategori">Kategori</a>
+            <a href="#kenapa">Kenapa Kami</a>
+        </div>
+        <a href="https://wa.me/6281234567890" class="btn-nav"><i class="fa-brands fa-whatsapp"></i> Konsultasi</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Sehat itu <em>gak harus</em> ribet.</h1>
+            <p>Lihat katalog produk kesehatan, cek ketersediaan, dan hubungi admin sebelum membeli.</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <strong>30+</strong>
+                    <span>Produk aktif</span>
+                </div>
+                <div class="stat">
+                    <strong>08-21</strong>
+                    <span>Jam admin</span>
+                </div>
+                <div class="stat">
+                    <strong>3</strong>
+                    <span>Kategori utama</span>
+                </div>
+            </div>
+            
+            <a href="#produk" class="btn-main">Lihat Katalog <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop" alt="Vitamins">
+            <div class="care-note">
+                <span>Catatan toko</span>
+                <strong>Imunitas, harian, ibu & anak.</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories" id="kategori">
+        <div class="cat-grid">
+            <div class="cat-card">
+                <div class="cat-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                <h3>Imunitas</h3>
+                <p>Vitamin C, D, Zinc</p>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>Fokus & Energi</h3>
+                <p>B-Complex, Omega 3</p>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon"><i class="fa-solid fa-moon"></i></div>
+                <h3>Tidur Nyenyak</h3>
+                <p>Magnesium, Melatonin</p>
+            </div>
+            <div class="cat-card">
+                <div class="cat-icon"><i class="fa-solid fa-person-running"></i></div>
+                <h3>Active Lifestyle</h3>
+                <p>Protein, Collagen</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="produk">
+        <div class="section-header">
+            <h2>Yang paling sering dicari</h2>
+            <p>Produk laris dengan review terbanyak dari pelanggan setia</p>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200&auto=format&fit=crop" alt="Vitamin C">
+                    <span class="p-badge">BEST SELLER</span>
+                </div>
+                <div class="p-info">
+                    <h3>Vitamin C 1000mg + Zinc</h3>
+                    <p>Imunitas kuat, kulit glowing. Isi 30 tablet.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 89K <small>Rp 120K</small></span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Bazz%20Health!%20Mau%20order%20Vit%20C" class="btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=200&auto=format&fit=crop" alt="Omega 3">
+                </div>
+                <div class="p-info">
+                    <h3>Omega-3 Fish Oil</h3>
+                    <p>Jantung sehat, otak encer. EPA DHA premium.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 159K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Bazz%20Health!%20Mau%20order%20Omega%203" class="btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=200&auto=format&fit=crop" alt="Multivitamin">
+                </div>
+                <div class="p-info">
+                    <h3>Complete Multivitamin</h3>
+                    <p>12 vitamin & mineral harian dalam 1 tablet.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 129K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Bazz%20Health!%20Mau%20order%20Multivitamin" class="btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=200&auto=format&fit=crop" alt="Collagen">
+                    <span class="p-badge">NEW</span>
+                </div>
+                <div class="p-info">
+                    <h3>Marine Collagen</h3>
+                    <p>10.000mg collagen + vitamin E. Kulit kencang.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 199K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Bazz%20Health!%20Mau%20order%20Collagen" class="btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=200&auto=format&fit=crop" alt="Probiotik">
+                </div>
+                <div class="p-info">
+                    <h3>Probiotik Gut Health</h3>
+                    <p>30 miliar CFU untuk pencernaan sehat.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 139K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Bazz%20Health!%20Mau%20order%20Probiotik" class="btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=200&auto=format&fit=crop" alt="Vitamin D">
+                </div>
+                <div class="p-info">
+                    <h3>Vitamin D3 5000 IU</h3>
+                    <p>Tulang kuat, mood stabil. Yang kerja di kantor wajib.</p>
+                    <div class="p-bottom">
+                        <span class="p-price">Rp 79K</span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Bazz%20Health!%20Mau%20order%20Vit%20D" class="btn-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us" id="kenapa">
+        <div class="why-grid">
+            <div class="why-text">
+                <h2>Kenapa ribuan orang percaya sama Bazz Health?</h2>
+                <p>Kami gak cuma jualan. Kami bantu kamu pilih suplemen yang beneran kamu butuhin. Gratis konsultasi, garansi asli, dan pengiriman cepat.</p>
+                
+                <ul class="why-list">
+                    <li><i class="fa-solid fa-check"></i> <span>Semua produk BPOM & bersertifikat halal</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Konsultasi gratis dengan apoteker berlisensi</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Garansi 100% uang kembali kalau produk palsu</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span>Pengiriman same-day untuk area Jabodetabek</span></li>
+                </ul>
+            </div>
+            <div class="why-img">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=500&auto=format&fit=crop" alt="Health consultation">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Reviews -->
+    <section id="reviews" data-section="reviews" data-editable-section-visible="reviews.visible" style="padding: 80px 10%; background: #f8fafc;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 data-editable="reviews.title" style="font-size: 32px; color: #1e293b;">Testimoni Pelanggan</h2>
+        </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+            <p data-editable="reviews.content" style="font-size: 18px; line-height: 1.8; color: #64748b; font-style: italic;">"Multivitaminnya membantu saya tetap fit selama pandemi. Harga terjangkau tapi kualitas premium!"</p>
+            <p data-editable="reviews.author" style="margin-top: 20px; font-weight: 600; color: #1e293b;">— Ahmad, Surabaya</p>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Story -->
+    <section id="brand_story" data-section="brand_story" data-editable-section-visible="brand_story.visible" style="padding: 80px 10%; background: white;">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <h2 data-editable="brand_story.title" style="font-size: 36px; color: #1e293b; margin-bottom: 20px;">Cerita Kami</h2>
+                <p data-editable="brand_story.content" style="font-size: 16px; line-height: 1.8; color: #64748b;">Bazzhealth didirikan dengan misi sederhana: membantu orang Indonesia hidup lebih sehat. Kami bekerjasama dengan apoteker berpengalaman untuk menyediakan suplemen berkualitas dengan harga yang terjangkau.</p>
+            </div>
+            <div data-editable="brand_story.image" style="border-radius: 16px; height: 300px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=900&auto=format&fit=crop" alt="Tim kesehatan" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Brand Gallery -->
+    <section id="brand_gallery" data-section="brand_gallery" data-editable-section-visible="brand_gallery.visible" style="padding: 80px 10%; background: #f8fafc;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 data-editable="brand_gallery.title" style="font-size: 32px; color: #1e293b;">Galeri</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;">
+            <div data-editable="brand_gallery.image_1" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=600&auto=format&fit=crop" alt="Produk kesehatan" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div data-editable="brand_gallery.image_2" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=600&auto=format&fit=crop" alt="Suplemen" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div data-editable="brand_gallery.image_3" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop" alt="Konsultasi" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div data-editable="brand_gallery.image_4" style="aspect-ratio: 1; border-radius: 12px; overflow:hidden;"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop" alt="Vitamin" style="width:100%;height:100%;object-fit:cover;"></div>
+        </div>
+    </section>
+
+    <!-- SECTION: Location -->
+    <section id="location" data-section="location" data-editable-section-visible="location.visible" style="padding: 80px 10%; background: white;">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <h2 data-editable="location.title" style="font-size: 32px; color: #1e293b; margin-bottom: 20px;">Kunjungi Apotek Kami</h2>
+                <p data-editable="location.address" style="font-size: 16px; line-height: 1.8; color: #64748b; margin-bottom: 20px;">
+                    Jl. Sehat No. 78<br>
+                    Jakarta Pusat, 10310<br>
+                    Indonesia
+                </p>
+                <p data-editable="location.hours" style="font-size: 14px; color: #64748b;">
+                    <strong>Jam Operasional:</strong><br>
+                    Senin - Minggu: 08.00 - 22.00<br>
+                    (Termasuk hari libur nasional)
+                </p>
+                <div style="display:grid;gap:10px;margin-top:20px;">
+                    <div data-editable="location.outlet1_name" style="padding:14px;border:1px solid #dbe7dd;border-radius:12px;background:#f8fafc;">
+                        <strong>Cabang Jakarta Pusat</strong><br>
+                        <span data-editable="location.outlet1_address" style="color:#64748b;font-size:14px;">Jl. Sehat No. 78</span>
+                    </div>
+                    <div data-editable="location.outlet2_name" style="padding:14px;border:1px solid #dbe7dd;border-radius:12px;background:#f8fafc;">
+                        <strong>Cabang Bekasi</strong><br>
+                        <span data-editable="location.outlet2_address" style="color:#64748b;font-size:14px;">Area Grand Galaxy</span>
+                    </div>
+                </div>
+            </div>
+            <div data-editable="location.map" style="background: #e2e8f0; border-radius: 12px; height: 300px; display: flex; align-items: center; justify-content: center; color: #94a3b8;">
+                [Google Maps]
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ -->
+    <section id="faq" data-section="faq" data-editable-section-visible="faq.visible" style="padding: 80px 10%; background: #f8fafc;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 data-editable="faq.title" style="font-size: 32px; color: #1e293b;">Pertanyaan Umum</h2>
+            </div>
+            <div>
+                <details data-editable="faq.q1" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 15px; background: white;">
+                    <summary style="font-weight: 600; color: #1e293b; cursor: pointer;">Apakah produk sudah BPOM?</summary>
+                    <p data-editable="faq.a1" style="margin-top: 15px; color: #64748b; line-height: 1.6;">Ya, semua produk kami telah terdaftar dan tersertifikasi BPOM. Keamanan Anda adalah prioritas kami.</p>
+                </details>
+                <details data-editable="faq.q2" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 15px; background: white;">
+                    <summary style="font-weight: 600; color: #1e293b; cursor: pointer;">Bisa konsultasi dulu sebelum beli?</summary>
+                    <p data-editable="faq.a2" style="margin-top: 15px; color: #64748b; line-height: 1.6;">Tentu! Tim apoteker kami siap membantu via WhatsApp untuk rekomendasi produk yang sesuai kebutuhan Anda.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo"><img src="/template-assets/bazz-health-logo.svg" alt="Bazz Health logo"> Bazz Health</div>
+        <p>Misi kami: membantu orang Indonesia hidup lebih sehat dengan suplemen berkualitas dan informasi yang terpercaya.</p>
+        <div class="footer-links">
+            <a href="#">Tentang Kami</a>
+            <a href="#">Konsultasi</a>
+            <a href="#">Blog Kesehatan</a>
+            <a href="#">Instagram</a>
+        </div>
+        <div class="copyright">
+            © 2026 Bazz Health. Didukung oleh webtokoku.
+        </div>
+    </footer>
+    <script>
+      const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 700'%3E%3Crect width='900' height='700' fill='%23FAF9F6'/%3E%3Cpath d='M140 120h620v460H140z' fill='%23E8F5E9' stroke='%232D5A3D' stroke-width='4'/%3E%3Ctext x='450' y='350' font-family='Arial' font-size='42' fill='%232D5A3D' text-anchor='middle'%3EBazz Health%3C/text%3E%3C/svg%3E";
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", () => {
+          img.src = fallbackImage;
+        }, { once: true });
+      });
+    </script>
+<script src="/demo/demo-engine.js"></script></body>
+</html>

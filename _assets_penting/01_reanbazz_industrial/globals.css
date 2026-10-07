@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #e1c013;
+  --color-primary-hover: #c4a60c;
+  --color-dark: #1b1b1b;
+  --color-darker: #0b0b0b;
+  --color-card: #252525;
+  --color-border: #424242;
+  --color-text-muted: #d2d2d2;
+  --font-bai: var(--font-bai-jamjuree);
+  --font-poppins: var(--font-poppins);
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-white font-poppins;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bai font-bold uppercase mb-4 leading-snug;
+  }
+  
+  h1 { @apply text-3xl md:text-5xl lg:text-7xl; }
+  h2 { @apply text-2xl md:text-4xl; }
+  h3 { @apply text-xl md:text-3xl; }
+  h4 { @apply text-lg md:text-2xl; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-block px-8 py-4 font-bai font-semibold uppercase transition-all duration-300 border text-center;
+  }
+  
+  .btn-primary {
+    @apply bg-primary border-primary text-black hover:bg-transparent hover:text-primary;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent border-white text-white hover:bg-primary hover:border-primary hover:text-black;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-5 w-full;
+  }
+}
