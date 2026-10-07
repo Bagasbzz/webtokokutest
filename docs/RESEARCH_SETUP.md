@@ -55,6 +55,11 @@ Rekomendasi untuk `webtokokutest.vercel.app` (konfigurasi env saja, tanpa ubah k
 
 ## 3. Urutan migrasi Supabase (project baru, kosong)
 
+> **Cara cepat:** jalankan satu file [`supabase/research/RESEARCH_ALL_IN_ONE.sql`](../supabase/research/RESEARCH_ALL_IN_ONE.sql)
+> di SQL Editor. File ini hasil generate: isi file asli di tabel bawah disalin apa adanya sesuai urutan,
+> dibungkus satu transaksi (`BEGIN`/`COMMIT`) — jika ada error, seluruhnya di-rollback.
+> Header file memuat hash SHA-256 tiap file sumber untuk verifikasi.
+
 > Jangan jalankan `supabase/1_RESET_ONLY.sql` (destruktif; tidak dibutuhkan pada DB baru).
 > File `schema.sql`, `final_schema.sql`, `step_11_*.sql`, `step_16/17/18_*.sql`,
 > `phase_4a_admin_feature_flags.sql` adalah skema lama/alternatif — sudah tercakup di `2_CREATE_ALL.sql`.
